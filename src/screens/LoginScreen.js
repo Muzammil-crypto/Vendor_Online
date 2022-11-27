@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { TouchableOpacity, StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { TouchableOpacity, StyleSheet, View, Alert } from "react-native";
 import { Text } from "react-native-paper";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
@@ -12,6 +12,10 @@ import { passwordValidator } from "../helpers/passwordValidator";
 import { userLogin } from "../features/user/userActions";
 
 export default function LoginScreen({ navigation }) {
+  /********************************************* */
+  const { loading, userInfo, error } = useSelector((state) => state.user);
+
+  /********************************************** */
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const dispatch = useDispatch();
@@ -29,10 +33,8 @@ export default function LoginScreen({ navigation }) {
       email: email.value,
       password: password.value,
     };
-    debugger;
-    dispatch(userLogin(data));
+    dispatch(userLogin({ data, navigation }));
   };
-
   return (
     <Background>
       {/* <BackButton goBack={navigation.goBack} /> */}

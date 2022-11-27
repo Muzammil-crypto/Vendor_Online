@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { registerUser } from "../features/user/userActions";
 import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Text } from "react-native-paper";
@@ -11,25 +12,9 @@ import { theme } from "../core/theme";
 import { emailValidator } from "../helpers/emailValidator";
 import { nameValidator } from "../helpers/nameValidator";
 import { passwordValidator } from "../helpers/passwordValidator";
-import { ScrollView } from "react-native-gesture-handler";
-import CheckBox from "../components/CheckBox";
+import { ScrollView, State } from "react-native-gesture-handler";
 import { confirmPasswordValidator } from "../helpers/confirmPasswordValidator";
-import { Formik } from "formik";
-import * as Yup from "yup";
 
-//**************************************************** */
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required().email().label("email"),
-  password: Yup.string()
-    .required("password should be minimum 8character!!!")
-    .min(6),
-  confirmPassword: Yup.string()
-    .required()
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
-  name: Yup.string().required().label("name"),
-});
-
-//**************************************************** */
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -38,10 +23,11 @@ export default function RegisterScreen({ navigation }) {
     value: "",
     error: "",
   });
-
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
-  let is18Plus = false;
-  let agreeTerms = false;
+  let is18Plus = true;
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value);
@@ -64,42 +50,25 @@ export default function RegisterScreen({ navigation }) {
       password: password.value,
       confirmPassword: confirmPassword.value,
       is18Plus,
-      agreeTerms,
     };
-    debugger;
-    if (agreeTerms === true) {
-      console.log("Executing");
-      dispatch(registerUser(data));
-    } else {
-      return Alert.alert("Alert Title", "My Alert Msg", [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-    }
+    // useEffect(() => {
+    //   // redirect user to login page if registration was successful
+    //   if (error) {
+    //     // Alert.alert("EnterValidGnd");
+    //     <Text> Hello </Text>;
+    //   }
+    //   // redirect authenticated user to profile screen
+    //   // if (userInfo) navigate("/user-profile");
+    // }, [error, userInfo, success]);
+
+    dispatch(registerUser({ data, navigation }));
   };
 
   return (
     <ScrollView>
       <Background>
         <Logo />
-        {/* <Formik
-          initialValues={{
-            email: "",
-            name: "",
-            password: "",
-            confirmPassword: "",
-          }}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          {() => {
-            return (
-              <> */}
+
         <TextInput
           label="Name"
           returnKeyType="next"
@@ -140,16 +109,7 @@ export default function RegisterScreen({ navigation }) {
           errorText={confirmPassword.error}
           secureTextEntry
         />
-        {/* </> */}
-        {/* );
-          }} */}
 
-        <TouchableOpacity onPress={(is18Plus = true)}>
-          <CheckBox caption={"Are you above 18 ?"} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={(agreeTerms = true)}>
-          <CheckBox caption={"Agree to Terms and Conditions "} />
-        </TouchableOpacity>
         <Button
           mode="contained"
           onPress={onSignUpPressed}
@@ -163,7 +123,6 @@ export default function RegisterScreen({ navigation }) {
             <Text style={styles.link}>Login</Text>
           </TouchableOpacity>
         </View>
-        {/* </Formik> */}
       </Background>
     </ScrollView>
   );

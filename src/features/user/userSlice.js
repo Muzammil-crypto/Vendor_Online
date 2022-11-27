@@ -1,10 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, userLogin } from "./userActions";
+// const JWT_STORAGE_NAME = "token";
 
-const userToken = localStorage.getItem("userToken")
-  ? localStorage.getItem("userToken")
-  : null;
-
+// const userToken = localStorage.getItem("userToken")
+//   ? localStorage.getItem("userToken")
+//   : null;
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// const setJwt = (userToken) => {
+//   try {
+//     AsyncStorage.setItem(JWT_STORAGE_NAME, userToken);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// const getJwt = () => {
+//   try {
+//     AsyncStorage.getItem(JWT_STORAGE_NAME);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 const initialState = {
   user: null,
   loading: false,
@@ -42,6 +57,9 @@ const userSlice = createSlice({
       state.loading = false;
       state.userInfo = payload;
       state.userToken = payload.userToken;
+      // console.log(payload.userToken);
+      const token = AsyncStorage.getItem("userToken");
+      console.log(token);
     },
     [userLogin.rejected]: (state, { payload }) => {
       state.loading = false;
