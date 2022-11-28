@@ -1,6 +1,6 @@
-import React from 'react'
-import { Feather } from '@expo/vector-icons'
-import { TouchableOpacity } from 'react-native'
+import React from "react";
+import { Feather } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
 const HeaderRight = ({ navigation }) => {
   return (
@@ -12,7 +12,7 @@ const HeaderRight = ({ navigation }) => {
         style={{ marginRight: 10 }}
       />
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default HeaderRight
+export default HeaderRight;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -6,61 +6,60 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
-} from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
-import Background from '../components/Background'
-import Header from '../components/Header'
-import Product from '../components/Producst'
-import { theme } from '../core/theme'
+} from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import Background from "../components/Background";
+import Header from "../components/Header";
+import Product from "../components/Producst";
+import { theme } from "../core/theme";
 
 const Products = [
   {
-    Pname: 'Strawberry',
+    Pname: "Mangoes",
     price: 50,
     productImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg',
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg",
   },
   {
-    Pname: 'lela',
+    Pname: "Bananas",
     price: 50,
     productImage:
-      'https://cdn.shopify.com/s/files/1/0572/1187/9601/products/DayFreshStrawberryFruitYougrt100g.jpg?v=1635249203',
+      "https://cdn.shopify.com/s/files/1/0572/1187/9601/products/DayFreshStrawberryFruitYougrt100g.jpg?v=1635249203",
   },
   {
-    Pname: 'Alu',
+    Pname: "Alu",
     price: 50,
     productImage:
-      'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/strawberries-1296x728-feature.jpg?w=1155&h=1528',
+      "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/strawberries-1296x728-feature.jpg?w=1155&h=1528",
   },
   {
-    Pname: 'Alu',
+    Pname: "LadyFinger",
     price: 50,
     productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjILQJdc_Ch9p0lq_IuegZ4aeULr8_Jea4Gx0K2HCJlyPhH6dF_brPTR-H3rp7IUNFUo&usqp=CAU',
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjILQJdc_Ch9p0lq_IuegZ4aeULr8_Jea4Gx0K2HCJlyPhH6dF_brPTR-H3rp7IUNFUo&usqp=CAU",
   },
   {
-    Pname: 'Alu',
+    Pname: "Strawberies",
     price: 50,
     productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s',
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
   },
   {
-    Pname: 'Alu',
+    Pname: "Apples",
     price: 50,
     productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s',
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
   },
   {
-    Pname: 'Alu',
+    Pname: "Grapes",
     price: 50,
     productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s',
+      "https://img.freepik.com/free-vector/grape-fruit-cartoon-illustration-flat-cartoon-style_138676-2877.jpg",
   },
-]
-
+];
 export default function ShopScreen({ navigation }) {
-  const windowWidth = Dimensions.get('window').width
-  const windowHeight = Dimensions.get('window').height
+  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
   return (
     <View style={styles.background}>
       <Background>
@@ -72,13 +71,13 @@ export default function ShopScreen({ navigation }) {
           <Image
             style={styles.image}
             source={{
-              uri: 'https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg',
+              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1l4LQGok_H0_4JZMQfxaNdWqq5WcUePd3b8AB0FcPGgeV3tr7jTgf00G1MYgbAB9E2fw&usqp=CAU",
             }}
           />
           <Image
             style={styles.image}
             source={{
-              uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s',
+              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYESig4h7EpjQHibcNNYHAInb1LuB8NC-m8g&usqp=CAU",
             }}
           />
         </ScrollView>
@@ -93,7 +92,7 @@ export default function ShopScreen({ navigation }) {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={{ margin: 3 }}
-              onPress={() => navigation.navigate('ProductDetails')}
+              onPress={() => navigation.navigate("ProductDetails")}
             >
               <Product product={item} />
             </TouchableOpacity>
@@ -101,22 +100,21 @@ export default function ShopScreen({ navigation }) {
         />
       </Background>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
+    width: "100%",
+    backgroundColor: "transparent",
   },
 
   image: {
-    width: theme.dimensions.windowWidth * 0.8,
+    width: theme.dimensions.windowWidth,
     height: theme.dimensions.windowHeight * 0.26,
     borderRadius: 18,
-    marginLeft: 5,
-    marginRight: 10,
+    margin: 5,
   },
   ProductImage: {
     width: theme.dimensions.windowWidth * 0.05,
@@ -124,10 +122,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginLeft: 5,
     marginRight: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   firstProduct: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   secondProduct: {
     flex: 1,
@@ -137,4 +135,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 10,
   },
-})
+});

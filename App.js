@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -30,7 +31,6 @@ import FeatherDrawerIcon from "./src/components/FeatherDrawerIcon";
 import DrawerImageBackground from "./src/components/DrawerImageBackground";
 import { Provider } from "react-redux";
 import store from "./src/app/store";
-console.reportErrorsAsExceptions = false; // copy paste this line in your App.js
 
 export default function App() {
   const Drawer = createDrawerNavigator();

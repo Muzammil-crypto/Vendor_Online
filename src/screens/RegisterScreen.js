@@ -23,9 +23,7 @@ export default function RegisterScreen({ navigation }) {
     value: "",
     error: "",
   });
-  const { loading, userInfo, error, success } = useSelector(
-    (state) => state.user
-  );
+
   const dispatch = useDispatch();
   let is18Plus = true;
 
@@ -51,17 +49,10 @@ export default function RegisterScreen({ navigation }) {
       confirmPassword: confirmPassword.value,
       is18Plus,
     };
-    // useEffect(() => {
-    //   // redirect user to login page if registration was successful
-    //   if (error) {
-    //     // Alert.alert("EnterValidGnd");
-    //     <Text> Hello </Text>;
-    //   }
-    //   // redirect authenticated user to profile screen
-    //   // if (userInfo) navigate("/user-profile");
-    // }, [error, userInfo, success]);
 
     dispatch(registerUser({ data, navigation }));
+    (email.value = ""), (password.value = "");
+    (name.value = ""), (confirmPassword.value = "");
   };
 
   return (

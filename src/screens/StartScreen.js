@@ -1,12 +1,12 @@
-import React from 'react'
-import { Feather } from '@expo/vector-icons'
+import React from "react";
+import { Feather } from "@expo/vector-icons";
 
-import { StyleSheet, View } from 'react-native'
-import Background from '../components/Background'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import Paragraph from '../components/Paragraph'
-import { theme } from '../core/theme'
+import { StyleSheet, View } from "react-native";
+import Background from "../components/Background";
+import Header from "../components/Header";
+import Button from "../components/Button";
+import Paragraph from "../components/Paragraph";
+import { theme } from "../core/theme";
 
 export default function StartScreen({ navigation }) {
   return (
@@ -26,35 +26,35 @@ export default function StartScreen({ navigation }) {
           </Paragraph>
           <Button
             mode="contained"
-            onPress={() => navigation.navigate('LoginScreen')}
+            onPress={() => navigation.navigate("LoginScreen")}
           >
             Login
           </Button>
           <Button
             mode="outlined"
-            onPress={() => navigation.navigate('RegisterScreen')}
+            onPress={() => navigation.navigate("RegisterScreen")}
           >
             Sign Up
           </Button>
         </View>
       </Background>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     backgroundColor: theme.colors.primary,
   },
   container: {
     borderRadius: 18,
-    height: '55%',
-    backgroundColor: 'white',
-    width: '95%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "55%",
+    backgroundColor: "white",
+    width: "95%",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
-})
+});

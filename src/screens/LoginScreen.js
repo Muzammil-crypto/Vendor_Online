@@ -34,6 +34,7 @@ export default function LoginScreen({ navigation }) {
       password: password.value,
     };
     dispatch(userLogin({ data, navigation }));
+    (email.value = ""), (password.value = "");
   };
   return (
     <Background>

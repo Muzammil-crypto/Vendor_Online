@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderRadius: 12,
     height: theme.dimensions.windowHeight * 0.3,
-    width: theme.dimensions.windowWidth * 0.55,
+    width: theme.dimensions.windowWidth * 0.8,
   },
   text: {
     color: theme.colors.secondary,

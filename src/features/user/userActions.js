@@ -59,11 +59,11 @@ export const userLogin = createAsyncThunk(
       if (hy.status === 200) {
         obj.navigation.navigate("HomeScreen");
       }
+      console.log("STATUS", hy.status);
 
       // store user's token in local storage
       await storeData(hy.data.data.token);
       const userTokenok = await getData("@storage_Key");
-      console.log("TOKAAAAAAAN", hy.status);
 
       return data;
     } catch (error) {

@@ -22,13 +22,13 @@ import GalleryImagecomp from "../components/GalleryImage";
 
 const Products = [
   {
-    Pname: "Strawberry",
+    Pname: "Mangoes",
     price: 50,
     productImage:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg",
   },
   {
-    Pname: "lela",
+    Pname: "Bananas",
     price: 50,
     productImage:
       "https://cdn.shopify.com/s/files/1/0572/1187/9601/products/DayFreshStrawberryFruitYougrt100g.jpg?v=1635249203",
@@ -40,34 +40,32 @@ const Products = [
       "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/strawberries-1296x728-feature.jpg?w=1155&h=1528",
   },
   {
-    Pname: "Alu",
+    Pname: "LadyFinger",
     price: 50,
     productImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjILQJdc_Ch9p0lq_IuegZ4aeULr8_Jea4Gx0K2HCJlyPhH6dF_brPTR-H3rp7IUNFUo&usqp=CAU",
   },
   {
-    Pname: "Alu",
+    Pname: "Strawberies",
     price: 50,
     productImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
   },
   {
-    Pname: "Alu",
+    Pname: "Apples",
     price: 50,
     productImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
   },
   {
-    Pname: "Alu",
+    Pname: "Grapes",
     price: 50,
     productImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
+      "https://img.freepik.com/free-vector/grape-fruit-cartoon-illustration-flat-cartoon-style_138676-2877.jpg",
   },
 ];
 
 export default function CreateShopScreen({ navigation }) {
-  const [isChecked, setChecked] = useState(false);
-
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
 
   const [images, setImage] = useState([]);
@@ -91,7 +89,7 @@ export default function CreateShopScreen({ navigation }) {
     console.log(result);
 
     if (!result.canceled) {
-      setImage(result.assets[3] ? [result.assets[3]] : result.selected);
+      setImage(result.assets[0] ? [result.assets[0]] : result.selected);
     }
   };
 
@@ -136,7 +134,7 @@ export default function CreateShopScreen({ navigation }) {
                 contentContainerStyle={{
                   marginVertical: 50,
                   paddingBottom: 50,
-                  height: theme.dimensions.windowHeight,
+                  height: theme.dimensions.windowHeight / 4,
                   width: 400,
                 }}
                 data={images}

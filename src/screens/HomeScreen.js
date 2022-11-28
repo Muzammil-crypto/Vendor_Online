@@ -7,17 +7,16 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import HeaderImage from "../components/HeaderImage";
 import ChoiceCard from "../components/UserShopChoices";
-import { theme } from "../core/theme";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.background}>
-      <ScrollView>
+    <ScrollView>
+      <View style={styles.background}>
         <Background>
           <HeaderImage
             style={{ marginTop: -10 }}
             uri={
-              "https://img.freepik.com/premium-vector/flea-market-scene-cartoon-style_1639-32086.jpg?w=2000"
+              "https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RvcmV8ZW58MHx8MHx8&w=1000&q=80"
             }
           />
           <Header>Explore the best shops and the sellers </Header>
@@ -29,7 +28,7 @@ export default function HomeScreen({ navigation }) {
               "Tap on the following button to proceed to the Shop Registration Page"
             }
             uri={
-              "https://img.freepik.com/free-vector/farmers-market-with-happy-buyer-vendors-outdoor-grocery-shopping-organic-nutrition-natural-products-fresh-fruits-vegetables-meat-sale-business_575670-1567.jpg?w=2000"
+              "https://www.cloudways.com/blog/wp-content/uploads/Ecommerce-Shopping-Infographics.png"
             }
           />
           <Button
@@ -45,7 +44,7 @@ export default function HomeScreen({ navigation }) {
               "Tap on the following button to proceed to the Search Page"
             }
             uri={
-              "https://img.freepik.com/premium-vector/flea-market-scene-cartoon-style_1639-36034.jpg?w=2000"
+              "https://www.groovecommerce.com/hubfs/ecommerce-site-search.jpg"
             }
           />
           <Button
@@ -55,8 +54,8 @@ export default function HomeScreen({ navigation }) {
             Find Shop
           </Button>
         </Background>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
