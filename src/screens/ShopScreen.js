@@ -77,7 +77,7 @@ export default function ShopScreen({ navigation }) {
           <Image
             style={styles.image}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYESig4h7EpjQHibcNNYHAInb1LuB8NC-m8g&usqp=CAU",
+              uri: "https://media.istockphoto.com/id/1218550085/photo/local-fruit-and-vegetable-market-in-tel-aviv-israel.jpg?s=612x612&w=0&k=20&c=uPxYxx_e9dVOroUCgqc8bA5KKKCyMyIBYD1grXJErTg=",
             }}
           />
         </ScrollView>
