@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser, userLogin } from "./userActions";
+import { getUserInfo, registerUser, userLogin } from "./userActions";
 
 const initialState = {
   user: null,
@@ -15,7 +15,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    // register user
+    //*********** register user Cases*********** */
     [registerUser.pending]: (state) => {
       state.loading = true;
       state.error = null;
@@ -38,7 +38,6 @@ const userSlice = createSlice({
       state.loading = false;
       state.userInfo = payload;
       state.userToken = payload.userToken;
-      // console.log(payload.userToken);
       const token = AsyncStorage.getItem("userToken");
       console.log(token);
     },

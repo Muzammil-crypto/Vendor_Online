@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 
 import { StyleSheet, View } from "react-native";
@@ -7,8 +7,14 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Paragraph from "../components/Paragraph";
 import { theme } from "../core/theme";
-
+import { fetchUserInfo } from "../features/user/userActions";
+import { useDispatch } from "react-redux";
 export default function StartScreen({ navigation }) {
+  const dispatch = useDispatch();
+  function sendUserInfoRequeste() {
+    dispatch(fetchUserInfo());
+    navigation.navigate("Profile");
+  }
   return (
     <View style={styles.background}>
       <Background>
@@ -35,6 +41,9 @@ export default function StartScreen({ navigation }) {
             onPress={() => navigation.navigate("RegisterScreen")}
           >
             Sign Up
+          </Button>
+          <Button mode="contained" onPress={sendUserInfoRequeste}>
+            Profile
           </Button>
         </View>
       </Background>

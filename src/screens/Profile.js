@@ -1,64 +1,52 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
 import Background from "../components/Background";
 import Paragraph from "../components/Paragraph";
 import { theme } from "../core/theme";
 import { Feather } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchUserInfo,
+  getData,
+  storeData,
+} from "../features/user/userActions";
+import { STATUSES } from "../features/user/userInfoSlice";
+
 export default function Profile({ navigation }) {
-  return (
-    <View style={styles.background}>
-      <ScrollView>
-        <Background>
-          <View style={styles.container}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8kBdMhPCfsSW9CsgwsqEl_EBC1TNtcPTPBg&usqp=CAU",
-              }}
-            />
-            <Text style={styles.ProfileHeader}>HamzaCH</Text>
-            <Paragraph>@Hamza</Paragraph>
-            <View style={styles.PListItemsView}>
-              <Feather
-                name="airplay"
-                size={30}
-                color="black"
-                style={styles.PlistIcon}
+  const dispatch = useDispatch();
+  const { data, status } = useSelector((state) => state.userInfo);
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+  }, []);
+
+  if (status == STATUSES.LOADING) {
+    return <Text style={{ fontSize: 100, color: "black" }}>loading</Text>;
+  } else if (status == STATUSES.ERROR) {
+    return (
+      <Text style={{ fontSize: 100, color: "black" }}>ERROR and token is</Text>
+    );
+  } else {
+    console.log("Data dot name", data.data);
+    return (
+      <View style={styles.background}>
+        <ScrollView>
+          <Background>
+            <View style={styles.container}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8kBdMhPCfsSW9CsgwsqEl_EBC1TNtcPTPBg&usqp=CAU",
+                }}
               />
-              <Text style={styles.PListItem}>Dashboard</Text>
+              <Text style={styles.ProfileHeader}>{data.data?.name}</Text>
+              <Paragraph>{data.data?.email}</Paragraph>
+              <Paragraph>{data.data?.is18Plus ? "Age: 18+" : ""}</Paragraph>
             </View>
-            <View style={styles.PListItemsView}>
-              <Feather
-                name="dollar-sign"
-                size={30}
-                color="black"
-                style={styles.PlistIcon}
-              />
-              <Text style={styles.PListItem}>Payment History</Text>
-            </View>
-            <View style={styles.PListItemsView}>
-              <Feather
-                name="bar-chart-2"
-                size={30}
-                color="black"
-                style={styles.PlistIcon}
-              />
-              <Text style={styles.PListItem}>Statistics</Text>
-            </View>
-            <View style={styles.PListItemsView}>
-              <Feather
-                name="gift"
-                size={30}
-                color="black"
-                style={styles.PlistIcon}
-              />
-              <Text style={styles.PListItem}>Reward</Text>
-            </View>
-          </View>
-        </Background>
-      </ScrollView>
-    </View>
-  );
+          </Background>
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

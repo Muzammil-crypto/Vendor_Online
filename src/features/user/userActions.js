@@ -2,17 +2,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { url } from "../../const";
-
-const storeData = async (value) => {
+import { STATUSES, setStatus, setUserInfo } from "./userInfoSlice";
+export const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem("@storage_Key", jsonValue);
+    return value;
   } catch (e) {
     return e;
   }
 };
 
-const getData = async () => {
+export const getData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem("@storage_Key");
     return jsonValue != null ? JSON.parse(jsonValue) : null;
@@ -64,6 +65,7 @@ export const userLogin = createAsyncThunk(
       // store user's token in local storage
       await storeData(hy.data.data.token);
       const userTokenok = await getData("@storage_Key");
+      console.log("TOKAAAAAAAAAAAN", userTokenok);
 
       return data;
     } catch (error) {
@@ -76,3 +78,23 @@ export const userLogin = createAsyncThunk(
     }
   }
 );
+
+export function fetchUserInfo() {
+  return async function fetchUserInfoThunk(dispatch, getState) {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      const token = await getData();
+      const res = await axios.get(`${url}/api/users/profile/`, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = res.data;
+
+      dispatch(setUserInfo(data));
+      dispatch(setStatus(STATUSES.IDLE));
+    } catch (err) {
+      console.log(err);
+      dispatch(setStatus(STATUSES.ERROR));
+    }
+  };
+}
