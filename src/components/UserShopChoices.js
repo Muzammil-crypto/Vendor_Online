@@ -42,10 +42,13 @@ export default function ChoiceCard({
         <Text> </Text>
       )}
       <Header> {data[0]?.title} </Header>
-      <Paragraph>Status: {data[0]?.status}</Paragraph>
-      <Paragraph>Date Created: {data[0]?.createdBy?.name}</Paragraph>
-      <Paragraph>Seller-Email: {data[0]?.createdBy?.email}</Paragraph>
-      <Text style={styles.text}>{data[0]?.description}</Text>
+      <Text style={styles.text}>Status: {data[0]?.status}</Text>
+      <Text style={styles.text}>Creator: {data[0]?.createdBy?.name}</Text>
+      <Text style={styles.text}>Company: {data[0]?.company}</Text>
+      <Text style={styles.text}>Budget: {data[0]?.budget}</Text>
+      <Text style={styles.text}>----------------------------------------</Text>
+
+      <Paragraph>{data[0]?.description}</Paragraph>
     </View>
   );
 }
@@ -58,8 +61,9 @@ const styles = StyleSheet.create({
     width: theme.dimensions.windowWidth * 0.8,
   },
   text: {
-    color: theme.colors.secondary,
+    color: theme.colors.error,
     textAlign: "center",
+    margin: 3,
   },
   view: {
     margin: "1%",
