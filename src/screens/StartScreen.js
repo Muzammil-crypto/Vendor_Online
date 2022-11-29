@@ -7,13 +7,14 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Paragraph from "../components/Paragraph";
 import { theme } from "../core/theme";
-import { fetchUserInfo } from "../features/user/userActions";
+import { fetchShop, fetchUserInfo } from "../features/user/userActions";
 import { useDispatch } from "react-redux";
 export default function StartScreen({ navigation }) {
   const dispatch = useDispatch();
   function sendUserInfoRequeste() {
     dispatch(fetchUserInfo());
     navigation.navigate("Profile");
+    dispatch(fetchShop());
   }
   return (
     <View style={styles.background}>
@@ -28,7 +29,7 @@ export default function StartScreen({ navigation }) {
         <View style={styles.container}>
           <Header>Welcome</Header>
           <Paragraph>
-            Eat local; Give local; for neighborhood farmer’s market
+            Eat local, Give local; for neighborhood farmer's market
           </Paragraph>
           <Button
             mode="contained"

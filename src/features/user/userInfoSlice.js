@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { object } from "yup";
-import { getUserInfo, registerUser, userLogin } from "./userActions";
 export const STATUSES = Object.freeze({
   IDLE: "idle",
   ERROR: "error",

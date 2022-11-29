@@ -11,6 +11,9 @@ import {
   storeData,
 } from "../features/user/userActions";
 import { STATUSES } from "../features/user/userInfoSlice";
+import { ActivityIndicator } from "react-native-paper";
+import CircularIndicator from "../components/CircularIndicator";
+import HeaderImage from "../components/HeaderImage";
 
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
@@ -20,13 +23,22 @@ export default function Profile({ navigation }) {
   }, []);
 
   if (status == STATUSES.LOADING) {
-    return <Text style={{ fontSize: 100, color: "black" }}>loading</Text>;
+    return <CircularIndicator />;
   } else if (status == STATUSES.ERROR) {
     return (
-      <Text style={{ fontSize: 100, color: "black" }}>ERROR and token is</Text>
+      <View style={{ alignItems: "center" }}>
+        <Feather
+          name="x"
+          size={50}
+          color="red"
+          style={{
+            marginTop: theme.dimensions.windowHeight / 2.5,
+          }}
+        />
+        <Text>Error Occured while loading the data</Text>
+      </View>
     );
   } else {
-    console.log("Data dot name", data.data);
     return (
       <View style={styles.background}>
         <ScrollView>

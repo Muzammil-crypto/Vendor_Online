@@ -3,7 +3,9 @@ import { StyleSheet, Image, Text, View } from "react-native";
 import { theme } from "../core/theme";
 import Header from "./Header";
 import { Rating, AirbnbRating } from "react-native-ratings";
-
+import { fetchShop } from "../features/user/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import Paragraph from "./Paragraph";
 export default function ChoiceCard({
   mode,
   style,
@@ -13,13 +15,18 @@ export default function ChoiceCard({
   reviews,
   ...props
 }) {
+  const dispatch = useDispatch();
+  const { data, status } = useSelector((state) => state.shop);
+  // useEffect(() => {
+  //   dispatch(fetchShop());
+  // }, []);
   const showReviews = reviews;
   return (
     <View style={styles.view}>
       <Image
         style={styles.image}
         source={{
-          uri: uri,
+          uri: data[0]?.images[0],
         }}
       />
       {showReviews ? (
@@ -28,14 +35,17 @@ export default function ChoiceCard({
           starContainerStyle={{ marginTop: 20 }}
           count={5}
           reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
-          defaultRating={5}
+          defaultRating={data[0]?.reviews.length}
           size={18}
         />
       ) : (
         <Text> </Text>
       )}
-      <Header> {heading} </Header>
-      <Text style={styles.text}>{description}</Text>
+      <Header> {data[0]?.title} </Header>
+      <Paragraph>Status: {data[0]?.status}</Paragraph>
+      <Paragraph>Date Created: {data[0]?.createdBy?.name}</Paragraph>
+      <Paragraph>Seller-Email: {data[0]?.createdBy?.email}</Paragraph>
+      <Text style={styles.text}>{data[0]?.description}</Text>
     </View>
   );
 }
