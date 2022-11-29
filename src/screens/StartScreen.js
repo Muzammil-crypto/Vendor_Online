@@ -7,11 +7,17 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Paragraph from "../components/Paragraph";
 import { theme } from "../core/theme";
-import { fetchShop, fetchUserInfo } from "../features/user/userActions";
+import {
+  FetchCategoryList,
+  fetchShop,
+  fetchUserInfo,
+} from "../features/user/userActions";
 import { useDispatch } from "react-redux";
 export default function StartScreen({ navigation }) {
+  //
   const dispatch = useDispatch();
   function sendUserInfoRequeste() {
+    dispatch(FetchCategoryList());
     dispatch(fetchUserInfo());
     navigation.navigate("Profile");
     dispatch(fetchShop());

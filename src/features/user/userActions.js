@@ -4,6 +4,7 @@ import axios from "axios";
 import { url } from "../../const";
 import { STATUSES, setStatus, setUserInfo } from "./userInfoSlice";
 import { setShop, setShopStatus } from "./shopSlice";
+import { setCategory, setCategoryStatus } from "./categorySlice";
 export const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -110,16 +111,38 @@ export function fetchShop() {
       const data = res.data.data;
       // data.data[0]?.title;
       dispatch(setShop(data));
-      console.log(
-        "THIS IS THE SHOP DATA",
-        res.data.data,
-        "and the image is ",
-        data[0].images[0]
-      );
+      // console.log(
+      //   "THIS IS THE SHOP DATA",
+      //   res.data.data,
+      //   "and the image is ",
+      //   data[0].images[0]
+      // );
       dispatch(setShopStatus(STATUSES.IDLE));
     } catch (err) {
       console.log(err);
       dispatch(setShopStatus(STATUSES.ERROR));
+    }
+  };
+}
+/*****************FetchCategoryList******************************** */
+export function FetchCategoryList() {
+  return async function FetchCategoryThunk(dispatch, getState) {
+    dispatch(setCategory(STATUSES.LOADING));
+    try {
+      // const token = await getData();
+      const res = await axios.get(`${url}/api/categories/`);
+      const data = res.data.data;
+      // data.data[0]?.title;
+      dispatch(setCategory(data));
+      console.log(
+        "THIS IS THE Category DATA",
+        res.data.data,
+        "and the image is "
+      );
+      dispatch(setCategoryStatus(STATUSES.IDLE));
+    } catch (err) {
+      console.log(err);
+      dispatch(setCategoryStatus(STATUSES.ERROR));
     }
   };
 }
