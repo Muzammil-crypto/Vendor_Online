@@ -1,13 +1,13 @@
-import React from 'react'
-import { StyleSheet, View, Image, Text, ScrollView } from 'react-native'
-import Background from '../components/Background'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import HeaderImage from '../components/HeaderImage'
-import { Feather } from '@expo/vector-icons'
+import React from "react";
+import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
+import Background from "../components/Background";
+import Header from "../components/Header";
+import Button from "../components/Button";
+import HeaderImage from "../components/HeaderImage";
+import { Feather } from "@expo/vector-icons";
 
-import { theme } from '../core/theme'
-import Paragraph from '../components/Paragraph'
+import { theme } from "../core/theme";
+import Paragraph from "../components/Paragraph";
 
 export default function CheckOutScreen({ navigation }) {
   return (
@@ -17,7 +17,7 @@ export default function CheckOutScreen({ navigation }) {
           <HeaderImage
             style={styles.HeaderImageStyle}
             uri={
-              'https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg'
+              "https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg"
             }
           />
 
@@ -27,15 +27,15 @@ export default function CheckOutScreen({ navigation }) {
               <Image
                 style={styles.image}
                 source={{
-                  uri: 'https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg',
+                  uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg",
                 }}
               />
               <Feather name="plus" size={20} color={theme.colors.primary} />
             </View>
-            <Text style={styles.heading}>Shawarma</Text>
-            <Paragraph>Price : 200</Paragraph>
-            <Paragraph>Delievery Charges : 200</Paragraph>
-            <Paragraph>Subtotal : 200</Paragraph>
+            <Text style={styles.heading}>Multani Mango</Text>
+            <Paragraph>Price : 50$</Paragraph>
+            <Paragraph>Delievery Charges : 2$</Paragraph>
+            <Paragraph>Subtotal : 52$</Paragraph>
 
             <View style={{ marginTop: 70 }}>
               <Button
@@ -52,27 +52,27 @@ export default function CheckOutScreen({ navigation }) {
         </Background>
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
+    width: "100%",
+    backgroundColor: "transparent",
   },
   columnView: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignSelf: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
+    alignSelf: "center",
     borderWidth: 1,
     margin: 10,
     borderRadius: 12,
     borderColor: theme.colors.primary,
   },
   rowView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 80,
   },
 
@@ -86,15 +86,15 @@ const styles = StyleSheet.create({
   },
   heading: {
     margin: 10,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 15,
     marginTop: theme.dimensions.windowHeight * 0.08,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: theme.colors.primary,
   },
   HeaderImageStyle: {
     marginBottom: theme.dimensions.windowHeight * 0.01,
     marginVertical: -theme.dimensions.windowHeight * 0.015,
   },
-})
+});

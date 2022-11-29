@@ -1,18 +1,18 @@
-import React from 'react'
-import { StyleSheet, View, Image, Text, ScrollView } from 'react-native'
-import Background from '../components/Background'
-import Header from '../components/Header'
-import Button from '../components/Button'
-import HeaderImage from '../components/HeaderImage'
-import { Feather } from '@expo/vector-icons'
+import React from "react";
+import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
+import Background from "../components/Background";
+import Header from "../components/Header";
+import Button from "../components/Button";
+import HeaderImage from "../components/HeaderImage";
+import { Feather } from "@expo/vector-icons";
 
-import { theme } from '../core/theme'
-import Paragraph from '../components/Paragraph'
-import OrderDetailScreen from './orderDetailsForm'
+import { theme } from "../core/theme";
+import Paragraph from "../components/Paragraph";
+import OrderDetailScreen from "./orderDetailsForm";
 
 export default function ProductDetails({ navigation }) {
-  const Windowheight = theme.dimensions.windowHeight
-  const WindowWidth = theme.dimensions.windowWidth
+  const Windowheight = theme.dimensions.windowHeight;
+  const WindowWidth = theme.dimensions.windowWidth;
   return (
     <View style={styles.background}>
       <ScrollView>
@@ -23,22 +23,24 @@ export default function ProductDetails({ navigation }) {
               marginVertical: -Windowheight * 0.015,
             }}
             uri={
-              'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/1/9/0/hatk_honey-pot_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371603793161.jpeg'
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg"
             }
           />
 
           <View style={{ height: theme.dimensions.windowHeight / 2 }}>
-            <Header>This is the product title</Header>
+            <Header>Multaani Mangoes</Header>
             <Paragraph>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
               cursus enim at magna congue dapibus. Maecenas porta, velit ac
               tempus laoreet, quam turpis bibendum metus, nec
             </Paragraph>
+            <Text style={styles.Text}>Title: Multaani Mangoes</Text>
+            <Text style={styles.Text}>price: 50$</Text>
           </View>
           <View>
             <View>
               <Button
-                onPress={() => navigation.navigate('OrderDetailScreen')}
+                onPress={() => navigation.navigate("OrderDetailScreen")}
                 style={{ width: theme.dimensions.windowWidth * 0.9 }}
                 mode="contained"
               >
@@ -49,14 +51,14 @@ export default function ProductDetails({ navigation }) {
         </Background>
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: '100%',
-    backgroundColor: 'transparent',
+    width: "100%",
+    backgroundColor: "transparent",
   },
 
   image: {
@@ -72,10 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginLeft: 5,
     marginRight: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
-  firstProduct: {
-    flexDirection: 'row',
+  Text: {
+    color: theme.colors.primary,
   },
   secondProduct: {
     flex: 1,
@@ -85,4 +87,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 10,
   },
-})
+});

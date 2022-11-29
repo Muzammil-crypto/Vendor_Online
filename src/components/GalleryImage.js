@@ -8,10 +8,10 @@ class GalleryImagecomp extends Component {
     return (
       <View
         style={{
-          margin: "1%",
+          // margin: "1%",
           alignItems: "center",
-          width: "50%",
-          height: "50%",
+          // width: "50%",
+          // height: "20%",
 
           borderColor: theme.colors.primary,
         }}
@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 10,
     justifyContent: "center",
-    height: theme.dimensions.windowHeight * 0.2,
-    width: theme.dimensions.windowWidth * 0.41,
-    marginRight: theme.dimensions.windowWidth * 0.02,
-    marginLeft: theme.dimensions.windowWidth * 0.02,
+    height: theme.dimensions.windowHeight * 0.112,
+    width: theme.dimensions.windowWidth * 0.22,
+    margin: theme.dimensions.windowWidth * 0.02,
+    marginBottom: theme.dimensions.windowWidth * 0.02,
   },
   text: {
     flex: 1,

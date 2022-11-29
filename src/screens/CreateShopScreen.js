@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
+import DropDownPicker from "react-native-dropdown-picker";
+
 import { Feather } from "@expo/vector-icons";
 
 //Components
@@ -20,52 +15,14 @@ import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import GalleryImagecomp from "../components/GalleryImage";
 
-const Products = [
-  {
-    Pname: "Mangoes",
-    price: 50,
-    productImage:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg",
-  },
-  {
-    Pname: "Bananas",
-    price: 50,
-    productImage:
-      "https://cdn.shopify.com/s/files/1/0572/1187/9601/products/DayFreshStrawberryFruitYougrt100g.jpg?v=1635249203",
-  },
-  {
-    Pname: "Alu",
-    price: 50,
-    productImage:
-      "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/strawberries-1296x728-feature.jpg?w=1155&h=1528",
-  },
-  {
-    Pname: "LadyFinger",
-    price: 50,
-    productImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjILQJdc_Ch9p0lq_IuegZ4aeULr8_Jea4Gx0K2HCJlyPhH6dF_brPTR-H3rp7IUNFUo&usqp=CAU",
-  },
-  {
-    Pname: "Strawberies",
-    price: 50,
-    productImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
-  },
-  {
-    Pname: "Apples",
-    price: 50,
-    productImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
-  },
-  {
-    Pname: "Grapes",
-    price: 50,
-    productImage:
-      "https://img.freepik.com/free-vector/grape-fruit-cartoon-illustration-flat-cartoon-style_138676-2877.jpg",
-  },
-];
-
 export default function CreateShopScreen({ navigation }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+  ]);
+  /////////////////////////////////////////////////
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
 
   const [images, setImage] = useState([]);
@@ -89,7 +46,7 @@ export default function CreateShopScreen({ navigation }) {
     console.log(result);
 
     if (!result.canceled) {
-      setImage(result.assets[0] ? [result.assets[0]] : result.selected);
+      setImage(result.assets);
     }
   };
 
@@ -124,24 +81,20 @@ export default function CreateShopScreen({ navigation }) {
             <View
               style={{
                 flex: 1,
-                height: theme.dimensions.windowHeight / 3,
-                // backgroundColor: 'green',
+                height: theme.dimensions.windowHeight / 5,
               }}
             >
               <FlatList
+                numColumns={3}
                 keyExtractor={(item, index) => index.toString()}
-                // keyExtractor={(_, i) => i.toString()}
                 contentContainerStyle={{
-                  marginVertical: 50,
+                  marginVertical: 20,
                   paddingBottom: 50,
-                  height: theme.dimensions.windowHeight / 4,
-                  width: 400,
+                  alignItems: "center",
+                  width: theme.dimensions.windowWidth,
                 }}
                 data={images}
-                renderItem={({ item }) => (
-                  <GalleryImagecomp gip={item} />
-                  // <Text>{item.uri}</Text>
-                )}
+                renderItem={({ item }) => <GalleryImagecomp gip={item} />}
               />
             </View>
           </View>
@@ -150,8 +103,16 @@ export default function CreateShopScreen({ navigation }) {
           <TextInput label="Location" />
           <TextInput label="Buget" />
           <TextInput style={{ height: 100 }} label="Description" />
+          <DropDownPicker
+            style={{ marginBottom: 100 }}
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
 
-          <SafeAreaView></SafeAreaView>
           <Button mode={"contained"}>Post Shop</Button>
         </Background>
       </ScrollView>

@@ -48,7 +48,7 @@ const Products = [
     Pname: "Apples",
     price: 50,
     productImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb5Nbr-4vdoPMN6DDjkNeVowZNgf4RQbrcCjqcBgSb3Q&s",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg",
   },
   {
     Pname: "Grapes",
