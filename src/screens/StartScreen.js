@@ -22,6 +22,10 @@ export default function StartScreen({ navigation }) {
     navigation.navigate("Profile");
     dispatch(fetchShop());
   }
+  // useEffect(() => {});
+  function goToLoginPage() {
+    navigation.navigate("LoginScreen");
+  }
   return (
     <View style={styles.background}>
       <Background>
@@ -37,10 +41,7 @@ export default function StartScreen({ navigation }) {
           <Paragraph>
             Eat local, Give local; for neighborhood farmer's market
           </Paragraph>
-          <Button
-            mode="contained"
-            onPress={() => navigation.navigate("LoginScreen")}
-          >
+          <Button mode="contained" onPress={goToLoginPage}>
             Login
           </Button>
           <Button

@@ -10,13 +10,17 @@ import ChoiceCard from "../components/UserShopChoices";
 import { fetchShop } from "../features/user/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import HomeCard from "../components/HomeCard";
+import CircularIndicator from "../components/CircularIndicator";
 
 export default function HomeScreen({ navigation }) {
+  const status = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   function sendShopRequest() {
     dispatch(fetchShop());
     navigation.navigate("SearchShopScreen");
   }
+
   return (
     <ScrollView>
       <View style={styles.background}>

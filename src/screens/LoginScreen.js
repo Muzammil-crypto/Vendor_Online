@@ -10,10 +10,12 @@ import { theme } from "../core/theme";
 import { emailValidator } from "../helpers/emailValidator";
 import { passwordValidator } from "../helpers/passwordValidator";
 import { userLogin } from "../features/user/userActions";
+import CircularIndicator from "../components/CircularIndicator";
+import { Feather } from "@expo/vector-icons";
 
 export default function LoginScreen({ navigation }) {
   /********************************************* */
-  const { loading, userInfo, error } = useSelector((state) => state.user);
+  const status = useSelector((state) => state.user);
 
   /********************************************** */
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -36,49 +38,66 @@ export default function LoginScreen({ navigation }) {
     dispatch(userLogin({ data, navigation }));
     (email.value = ""), (password.value = "");
   };
-  return (
-    <Background>
-      {/* <BackButton goBack={navigation.goBack} /> */}
-      <Logo />
-      <TextInput
-        label="Email"
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: "" })}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
-      <TextInput
-        label="Password"
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={(text) => setPassword({ value: text, error: "" })}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
-      />
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("ResetPasswordScreen")}
-        >
-          <Text style={styles.forgot}>Forgot your password?</Text>
-        </TouchableOpacity>
+  if (status.loading == true) {
+    return <CircularIndicator />;
+  } else if (status.error) {
+    return (
+      <View style={{ alignItems: "center" }}>
+        <Feather
+          name="x"
+          size={50}
+          color="red"
+          style={{
+            marginTop: theme.dimensions.windowHeight / 2.5,
+          }}
+        />
+        <Text>Wrong Info Entered</Text>
       </View>
-      <Button mode="contained" onPress={onLoginPressed}>
-        Login
-      </Button>
-      <View style={styles.row}>
-        <Text>Don’t have an account? </Text>
-        <TouchableOpacity onPress={onLoginPressed}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
-    </Background>
-  );
+    );
+  } else
+    return (
+      <Background>
+        {/* <BackButton goBack={navigation.goBack} /> */}
+        <Logo />
+        <TextInput
+          label="Email"
+          returnKeyType="next"
+          value={email.value}
+          onChangeText={(text) => setEmail({ value: text, error: "" })}
+          error={!!email.error}
+          errorText={email.error}
+          autoCapitalize="none"
+          autoCompleteType="email"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+        />
+        <TextInput
+          label="Password"
+          returnKeyType="done"
+          value={password.value}
+          onChangeText={(text) => setPassword({ value: text, error: "" })}
+          error={!!password.error}
+          errorText={password.error}
+          secureTextEntry
+        />
+        <View style={styles.forgotPassword}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ResetPasswordScreen")}
+          >
+            <Text style={styles.forgot}>Forgot your password?</Text>
+          </TouchableOpacity>
+        </View>
+        <Button mode="contained" onPress={onLoginPressed}>
+          Login
+        </Button>
+        <View style={styles.row}>
+          <Text>Don’t have an account? </Text>
+          <TouchableOpacity onPress={onLoginPressed}>
+            <Text style={styles.link}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
+      </Background>
+    );
 }
 
 const styles = StyleSheet.create({

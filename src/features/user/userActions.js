@@ -62,14 +62,13 @@ export const userLogin = createAsyncThunk(
       if (hy.status === 200) {
         obj.navigation.navigate("HomeScreen");
       }
-      console.log("STATUS", hy.status);
 
       // store user's token in local storage
       await storeData(hy.data.data.token);
-      const userTokenok = await getData("@storage_Key");
-      // console.log("TOKAAAAAAAAAAAN", userTokenok);
+      const token = await getData("@storage_Key");
+      console.log("LOGIN DATA", hy.status);
 
-      return data;
+      return hy.status;
     } catch (error) {
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
