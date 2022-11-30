@@ -18,8 +18,6 @@ import CircularIndicator from "../components/CircularIndicator";
 import Paragraph from "../components/Paragraph";
 
 export default function RegisterScreen({ navigation }) {
-  // const status = useSelector((state) => state.user);
-
   const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -59,9 +57,7 @@ export default function RegisterScreen({ navigation }) {
     (name.value = ""), (confirmPassword.value = "");
     navigation.navigate("LoginScreen");
   };
-  // if (status.loading == true) {
-  //   return <CircularIndicator />;
-  // } else
+
   return (
     <ScrollView>
       <Background>

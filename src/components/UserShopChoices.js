@@ -15,13 +15,12 @@ export default function ChoiceCard({
   reviews,
   ...props
 }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.shop);
-  // useEffect(() => {
-  //   dispatch(fetchShop());
-  // }, []);
-  const showReviews = reviews;
+  const res = props.data;
+
   return (
+    // console.log("sataassssssss", res[0].title),
     <View style={styles.view}>
       <Image
         style={styles.image}
@@ -29,18 +28,16 @@ export default function ChoiceCard({
           uri: data[0]?.images[0],
         }}
       />
-      {showReviews ? (
-        <AirbnbRating
-          showRating={false}
-          starContainerStyle={{ marginTop: 20 }}
-          count={5}
-          reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
-          defaultRating={data[0]?.reviews.length}
-          size={18}
-        />
-      ) : (
-        <Text> </Text>
-      )}
+
+      <AirbnbRating
+        showRating={true}
+        starContainerStyle={{ marginTop: 20 }}
+        count={5}
+        reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
+        defaultRating={data[0]?.reviews.length}
+        size={18}
+      />
+
       <Header> {data[0]?.title} </Header>
       <Text style={styles.text}>Status: {data[0]?.status}</Text>
       <Text style={styles.text}>Creator: {data[0]?.createdBy?.name}</Text>

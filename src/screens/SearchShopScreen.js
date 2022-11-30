@@ -8,11 +8,13 @@ import { fetchShop } from "../features/user/userActions";
 import { STATUSES } from "../features/user/userInfoSlice";
 import { Feather } from "@expo/vector-icons";
 import CircularIndicator from "../components/CircularIndicator";
+import { FlatList } from "react-native-gesture-handler";
 
 export default function SearchShopScreen({ navigation }) {
   //  const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.shop);
-
+  // const responseArray = data[0];
+  // console.log("Response is ", responseArray);
   if (status == STATUSES.LOADING) {
     return <CircularIndicator />;
   } else if (status == STATUSES.ERROR) {
@@ -52,6 +54,27 @@ export default function SearchShopScreen({ navigation }) {
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus enim at magna congue dapibus quam turpis bibendum metus, nec"
               />
             </TouchableOpacity>
+
+            {/* <FlatList
+              showsVerticalScrollIndicator={false}
+              style={{
+                height: theme.dimensions.windowHeight / 2,
+                width: theme.dimensions.windowWidth,
+              }}
+              numColumns={2}
+              data={data}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <ChoiceCard data={data} />
+                // <Text>{data[0]?.title}</Text>
+                // <TouchableOpacity
+                //   style={{ margin: 3 }}
+                //   onPress={() => navigation.navigate("ProductDetails")}
+                // >
+                //   <ChoiceCard choiceCardData={item} />
+                // </TouchableOpacity>
+              )}
+            /> */}
           </View>
         </ScrollView>
       </View>
