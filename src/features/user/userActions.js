@@ -29,7 +29,6 @@ export const registerUser = createAsyncThunk(
   "user/register",
   // callback function
   async (module, { rejectWithValue }) => {
-    debugger;
     try {
       // make request to backend
       const hi = await axios.post(`${url}/api/auth/register`, module.data);
@@ -110,12 +109,7 @@ export function fetchShop() {
       const data = res.data.data;
       // data.data[0]?.title;
       dispatch(setShop(data));
-      // console.log(
-      //   "THIS IS THE SHOP DATA",
-      //   res.data.data,
-      //   "and the image is ",
-      //   data[0].images[0]
-      // );
+
       dispatch(setShopStatus(STATUSES.IDLE));
     } catch (err) {
       console.log(err);

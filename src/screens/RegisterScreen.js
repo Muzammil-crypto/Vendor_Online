@@ -14,8 +14,11 @@ import { nameValidator } from "../helpers/nameValidator";
 import { passwordValidator } from "../helpers/passwordValidator";
 import { ScrollView, State } from "react-native-gesture-handler";
 import { confirmPasswordValidator } from "../helpers/confirmPasswordValidator";
+import CircularIndicator from "../components/CircularIndicator";
 
 export default function RegisterScreen({ navigation }) {
+  const status = useSelector((state) => state.user);
+
   const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -54,69 +57,73 @@ export default function RegisterScreen({ navigation }) {
     (email.value = ""), (password.value = "");
     (name.value = ""), (confirmPassword.value = "");
   };
+  if (status.loading == true) {
+    return <CircularIndicator />;
+  } else
+    return (
+      <ScrollView>
+        <Background>
+          <Logo />
 
-  return (
-    <ScrollView>
-      <Background>
-        <Logo />
+          <TextInput
+            label="Name"
+            returnKeyType="next"
+            value={name.value}
+            onChangeText={(text) => setName({ value: text, error: "" })}
+            error={!!name.error}
+            errorText={name.error}
+          />
+          <TextInput
+            label="Email"
+            returnKeyType="next"
+            value={email.value}
+            onChangeText={(text) => setEmail({ value: text, error: "" })}
+            error={!!email.error}
+            errorText={email.error}
+            autoCapitalize="none"
+            autoCompleteType="email"
+            textContentType="emailAddress"
+            keyboardType="email-address"
+          />
+          <TextInput
+            label="Password"
+            returnKeyType="done"
+            value={password.value}
+            onChangeText={(text) => setPassword({ value: text, error: "" })}
+            error={!!password.error}
+            errorText={password.error}
+            secureTextEntry
+          />
+          <TextInput
+            label="confirmPassword"
+            returnKeyType="done"
+            value={confirmPassword.value}
+            onChangeText={(text) =>
+              setConfirmPassword({ value: text, error: "" })
+            }
+            error={!!confirmPassword.error}
+            errorText={confirmPassword.error}
+            secureTextEntry
+          />
 
-        <TextInput
-          label="Name"
-          returnKeyType="next"
-          value={name.value}
-          onChangeText={(text) => setName({ value: text, error: "" })}
-          error={!!name.error}
-          errorText={name.error}
-        />
-        <TextInput
-          label="Email"
-          returnKeyType="next"
-          value={email.value}
-          onChangeText={(text) => setEmail({ value: text, error: "" })}
-          error={!!email.error}
-          errorText={email.error}
-          autoCapitalize="none"
-          autoCompleteType="email"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-        />
-        <TextInput
-          label="Password"
-          returnKeyType="done"
-          value={password.value}
-          onChangeText={(text) => setPassword({ value: text, error: "" })}
-          error={!!password.error}
-          errorText={password.error}
-          secureTextEntry
-        />
-        <TextInput
-          label="confirmPassword"
-          returnKeyType="done"
-          value={confirmPassword.value}
-          onChangeText={(text) =>
-            setConfirmPassword({ value: text, error: "" })
-          }
-          error={!!confirmPassword.error}
-          errorText={confirmPassword.error}
-          secureTextEntry
-        />
-
-        <Button
-          mode="contained"
-          onPress={onSignUpPressed}
-          style={{ marginTop: theme.dimensions.windowHeight * 0.03 }}
-        >
-          Sign Up
-        </Button>
-        <View style={styles.row}>
-          <Text>Already have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-            <Text style={styles.link}>Login</Text>
-          </TouchableOpacity>
-        </View>
-      </Background>
-    </ScrollView>
-  );
+          <Button
+            mode="contained"
+            onPress={onSignUpPressed}
+            style={{ marginTop: theme.dimensions.windowHeight * 0.03 }}
+          >
+            Sign Up
+          </Button>
+          <View style={styles.row}>
+            <Text>Already have an account? </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("LoginScreen")}
+            >
+              <Text style={styles.link}>Login</Text>
+            </TouchableOpacity>
+          </View>
+        </Background>
+      </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({

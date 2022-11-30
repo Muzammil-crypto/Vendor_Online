@@ -14,10 +14,8 @@ import CircularIndicator from "../components/CircularIndicator";
 import { Feather } from "@expo/vector-icons";
 
 export default function LoginScreen({ navigation }) {
-  /********************************************* */
   const status = useSelector((state) => state.user);
 
-  /********************************************** */
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const dispatch = useDispatch();
