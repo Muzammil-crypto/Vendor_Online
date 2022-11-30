@@ -12,6 +12,8 @@ import { passwordValidator } from "../helpers/passwordValidator";
 import { userLogin } from "../features/user/userActions";
 import CircularIndicator from "../components/CircularIndicator";
 import { Feather } from "@expo/vector-icons";
+import Paragraph from "../components/Paragraph";
+import Header from "../components/Header";
 
 export default function LoginScreen({ navigation }) {
   const status = useSelector((state) => state.user);
@@ -26,6 +28,7 @@ export default function LoginScreen({ navigation }) {
     if (emailError || passwordError) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
+
       return;
     }
 
@@ -35,6 +38,7 @@ export default function LoginScreen({ navigation }) {
     };
     dispatch(userLogin({ data, navigation }));
     (email.value = ""), (password.value = "");
+    navigation.navigate("HomeScreen");
   };
   if (status.loading == true) {
     return <CircularIndicator />;
@@ -43,19 +47,19 @@ export default function LoginScreen({ navigation }) {
       <View style={{ alignItems: "center" }}>
         <Feather
           name="x"
-          size={50}
+          size={60}
           color="red"
           style={{
             marginTop: theme.dimensions.windowHeight / 2.5,
           }}
         />
-        <Text>Wrong Info Entered</Text>
+        <Header>Access Denied: Please enter the valid credentials</Header>
       </View>
     );
   } else
     return (
       <Background>
-        {/* <BackButton goBack={navigation.goBack} /> */}
+        {/* <Button onPress={navigation.goBack} /> */}
         <Logo />
         <TextInput
           label="Email"
@@ -89,7 +93,7 @@ export default function LoginScreen({ navigation }) {
           Login
         </Button>
         <View style={styles.row}>
-          <Text>Don’t have an account? </Text>
+          <Paragraph>Don’t have an account? </Paragraph>
           <TouchableOpacity onPress={onLoginPressed}>
             <Text style={styles.link}>Sign up</Text>
           </TouchableOpacity>

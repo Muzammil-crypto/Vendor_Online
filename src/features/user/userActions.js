@@ -34,9 +34,9 @@ export const registerUser = createAsyncThunk(
       const hi = await axios.post(`${url}/api/auth/register`, module.data);
       console.log(hi.status);
 
-      if (hi.status === 201) {
-        module.navigation.navigate("LoginScreen");
-      }
+      // if (hi.status === 201) {
+      //   module.navigation.navigate("LoginScreen");
+      // }
     } catch (error) {
       console.log(error.response.data.message);
       // return custom error message from API if any
@@ -58,9 +58,9 @@ export const userLogin = createAsyncThunk(
       const hy = await axios.post(`${url}/api/auth/login`, obj.data);
       // console.log(hy);
 
-      if (hy.status === 200) {
-        obj.navigation.navigate("HomeScreen");
-      }
+      // if (hy.status === 200) {
+      //   obj.navigation.navigate("HomeScreen");
+      // }
 
       // store user's token in local storage
       await storeData(hy.data.data.token);

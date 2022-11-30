@@ -3,12 +3,14 @@ import userReducer from "../features/user/userSlice";
 import userInfoReducer from "../features/user/userInfoSlice";
 import shopReducer from "../features/user/shopSlice";
 import categoryReducer from "../features/user/categorySlice";
+import userLoginReducer from "../features/user/userLoginSlice";
 const store = configureStore({
   reducer: {
     user: userReducer,
     userInfo: userInfoReducer,
     shop: shopReducer,
     category: categoryReducer,
+    userLogin: userLoginReducer,
   },
 });
 export default store;

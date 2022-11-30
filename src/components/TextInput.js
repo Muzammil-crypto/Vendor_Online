@@ -1,3 +1,4 @@
+import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { TextInput as Input } from "react-native-paper";
@@ -9,7 +10,7 @@ export default function TextInput({ errorText, description, style, ...props }) {
       <Input
         style={(styles.input, style)}
         selectionColor={theme.colors.primary}
-        underlineColor="#C41B3E"
+        underlineColor={theme.colors.primary}
         mode="outlined"
         {...props}
       />
@@ -27,8 +28,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   input: {
-    backgroundColor: theme.colors.surface,
+    // backgroundColor: theme.colors.surface,
     underlineColor: theme.colors.primary,
+
     height: 45,
   },
   description: {

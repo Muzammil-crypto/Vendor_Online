@@ -1,7 +1,7 @@
-import { React, useEffect } from "react";
+import { React, useContext } from "react";
 import { Feather } from "@expo/vector-icons";
 
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import Background from "../components/Background";
 import Header from "../components/Header";
 import Button from "../components/Button";
@@ -13,8 +13,11 @@ import {
   fetchUserInfo,
 } from "../features/user/userActions";
 import { useDispatch } from "react-redux";
+import themeContext from "../core/themeContext";
 export default function StartScreen({ navigation }) {
   //
+
+  const newTheme = useContext(themeContext);
   const dispatch = useDispatch();
   function sendUserInfoRequeste() {
     dispatch(FetchCategoryList());
@@ -27,12 +30,12 @@ export default function StartScreen({ navigation }) {
     navigation.navigate("LoginScreen");
   }
   return (
-    <View style={styles.background}>
+    <View style={[styles.background, { backgroundColor: newTheme.primary }]}>
       <Background>
         <Feather
           name="shopping-cart"
           size={100}
-          color="white"
+          color={"white"}
           style={{ marginBottom: theme.dimensions.windowHeight * 0.08 }}
         />
 

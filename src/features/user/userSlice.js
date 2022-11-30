@@ -1,6 +1,5 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
-import { getUserInfo, registerUser, userLogin } from "./userActions";
+import { registerUser } from "./userActions";
 
 const initialState = {
   user: null,
@@ -27,22 +26,6 @@ const userSlice = createSlice({
       state.user = payload;
     },
     [registerUser.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
-    },
-    /***************Login Cases******************* */
-    [userLogin.pending]: (state) => {
-      state.loading = true;
-      state.error = null;
-    },
-    [userLogin.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.userInfo = payload;
-      state.userToken = payload.userToken;
-      const token = AsyncStorage.getItem("userToken");
-      console.log(token);
-    },
-    [userLogin.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

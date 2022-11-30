@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 const HeaderRight = ({ navigation }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
       <Feather
         name="user"
         size={30}
