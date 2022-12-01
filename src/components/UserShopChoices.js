@@ -16,37 +16,42 @@ export default function ChoiceCard({
   ...props
 }) {
   // const dispatch = useDispatch();
-  const { data, status } = useSelector((state) => state.shop);
+  // const { data, status } = useSelector((state) => state.shop);
   const res = props.data;
 
   return (
-    // console.log("sataassssssss", res[0].title),
-    <View style={styles.view}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: data[0]?.images[0],
-        }}
-      />
+    // console.log("PROP DATA", props.data),
+    console.log("sataassssssss", res),
+    (
+      <View style={styles.view}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: res?.images[0],
+          }}
+        />
 
-      <AirbnbRating
-        showRating={true}
-        starContainerStyle={{ marginTop: 20 }}
-        count={5}
-        reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
-        defaultRating={data[0]?.reviews.length}
-        size={18}
-      />
+        <AirbnbRating
+          showRating={false}
+          starContainerStyle={{ marginTop: 20 }}
+          count={5}
+          // reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
+          defaultRating={res?.reviews.length}
+          size={18}
+        />
 
-      <Header> {data[0]?.title} </Header>
-      <Text style={styles.text}>Status: {data[0]?.status}</Text>
-      <Text style={styles.text}>Creator: {data[0]?.createdBy?.name}</Text>
-      <Text style={styles.text}>Company: {data[0]?.company}</Text>
-      <Text style={styles.text}>Budget: {data[0]?.budget}</Text>
-      <Text style={styles.text}>----------------------------------------</Text>
+        <Header> {res?.title} </Header>
+        <Text style={styles.text}>Status: {res?.status}</Text>
+        <Text style={styles.text}>Creator: {res?.createdBy?.name}</Text>
+        <Text style={styles.text}>Company: {res?.company}</Text>
+        <Text style={styles.text}>Budget: {res?.budget}</Text>
+        <Text style={styles.text}>
+          ----------------------------------------
+        </Text>
 
-      <Paragraph>{data[0]?.description}</Paragraph>
-    </View>
+        <Paragraph>{res?.description}</Paragraph>
+      </View>
+    )
   );
 }
 

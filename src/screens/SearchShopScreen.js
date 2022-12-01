@@ -34,49 +34,26 @@ export default function SearchShopScreen({ navigation }) {
   } else {
     return (
       <View>
-        <ScrollView>
-          <SearchbarComp />
+        {/* <ScrollView> */}
+        <SearchbarComp />
 
-          <View style={{ margin: theme.dimensions.windowHeight * 0.02 }}>
-            <TouchableOpacity onPress={() => navigation.navigate("ShopScreen")}>
-              <ChoiceCard
-                reviews={true}
-                uri="https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg"
-                heading="Lorem Ipsum"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus enim at magna congue dapibus. Maecenas porta, velit ac tempus laoreet, quam turpis bibendum metus, nec"
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("ShopScreen")}>
-              <ChoiceCard
-                reviews={true}
-                uri="https://t4.ftcdn.net/jpg/03/18/04/73/360_F_318047308_FtdcpP2NHepZV68ZYxFH2JmtLW8a23N8.jpg"
-                heading="Lorem Ipsum"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus enim at magna congue dapibus quam turpis bibendum metus, nec"
-              />
-            </TouchableOpacity>
-
-            {/* <FlatList
-              showsVerticalScrollIndicator={false}
-              style={{
-                height: theme.dimensions.windowHeight / 2,
-                width: theme.dimensions.windowWidth,
-              }}
-              numColumns={2}
-              data={data}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => (
-                <ChoiceCard data={data} />
-                // <Text>{data[0]?.title}</Text>
-                // <TouchableOpacity
-                //   style={{ margin: 3 }}
-                //   onPress={() => navigation.navigate("ProductDetails")}
-                // >
-                //   <ChoiceCard choiceCardData={item} />
-                // </TouchableOpacity>
-              )}
-            /> */}
-          </View>
-        </ScrollView>
+        <View style={{ margin: theme.dimensions.windowHeight * 0.02 }}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 100 }}
+            numColumns={1}
+            data={data}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("ShopScreen")}
+              >
+                <ChoiceCard data={item} />
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+        {/* </ScrollView> */}
       </View>
     );
   }
