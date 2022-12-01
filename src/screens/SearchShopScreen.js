@@ -4,7 +4,6 @@ import SearchbarComp from "../components/SearchBar";
 import ChoiceCard from "../components/UserShopChoices";
 import { theme } from "../core/theme";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchShop } from "../features/user/userActions";
 import { STATUSES } from "../features/user/userInfoSlice";
 import { Feather } from "@expo/vector-icons";
 import CircularIndicator from "../components/CircularIndicator";
@@ -33,7 +32,7 @@ export default function SearchShopScreen({ navigation }) {
     );
   } else {
     return (
-      <View>
+      <View style={{ margin: 10 }}>
         <SearchbarComp />
 
         <View style={{ margin: theme.dimensions.windowHeight * 0.02 }}>
