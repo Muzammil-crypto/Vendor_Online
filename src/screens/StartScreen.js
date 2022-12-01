@@ -53,9 +53,6 @@ export default function StartScreen({ navigation }) {
           >
             Sign Up
           </Button>
-          <Button mode="contained" onPress={sendUserInfoRequeste}>
-            Profile
-          </Button>
         </View>
       </Background>
     </View>

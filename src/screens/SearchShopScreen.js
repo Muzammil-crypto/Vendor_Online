@@ -34,7 +34,6 @@ export default function SearchShopScreen({ navigation }) {
   } else {
     return (
       <View>
-        {/* <ScrollView> */}
         <SearchbarComp />
 
         <View style={{ margin: theme.dimensions.windowHeight * 0.02 }}>
@@ -53,7 +52,6 @@ export default function SearchShopScreen({ navigation }) {
             )}
           />
         </View>
-        {/* </ScrollView> */}
       </View>
     );
   }
