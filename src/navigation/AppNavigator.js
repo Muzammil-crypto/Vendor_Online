@@ -30,6 +30,7 @@ export default function AppNavigator() {
   const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator
+      backBehavior="history"
       initialRouteName="StartScreen"
       drawerContent={(props) => {
         return (
@@ -75,7 +76,7 @@ export default function AppNavigator() {
       <Drawer.Screen
         name="LoginScreen"
         component={LoginScreen}
-        options={({ navigation }) => ({
+        options={() => ({
           drawerItemStyle: { display: "none" },
 
           title: "Login",
@@ -84,8 +85,8 @@ export default function AppNavigator() {
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
-          headerRight: () => null,
+          headerLeft: () => null,
+          // headerRight: () => null,
         })}
       />
       <Drawer.Screen
@@ -100,7 +101,7 @@ export default function AppNavigator() {
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          headerLeft: () => null,
           headerRight: () => null,
         })}
       />
@@ -116,7 +117,7 @@ export default function AppNavigator() {
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
-          headerRight: () => <HeaderRight navigation={navigation} />,
+          // headerRight: () => <HeaderRight navigation={navigation} />,
           headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
@@ -132,7 +133,7 @@ export default function AppNavigator() {
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
       <Drawer.Screen
@@ -197,7 +198,7 @@ export default function AppNavigator() {
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
       <Drawer.Screen
@@ -212,7 +213,7 @@ export default function AppNavigator() {
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
       <Drawer.Screen
@@ -227,8 +228,8 @@ export default function AppNavigator() {
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
-          headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerRight: () => <HeaderRight navigation={navigation} />,
+          headerLeft: () => null,
         })}
       />
       <Drawer.Screen
@@ -243,7 +244,7 @@ export default function AppNavigator() {
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
     </Drawer.Navigator>

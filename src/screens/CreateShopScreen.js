@@ -14,6 +14,7 @@ import HeaderImage from "../components/HeaderImage";
 import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import GalleryImagecomp from "../components/GalleryImage";
+import BackButton from "../components/BackButton";
 
 export default function CreateShopScreen({ navigation }) {
   const [open, setOpen] = useState(false);
@@ -54,12 +55,14 @@ export default function CreateShopScreen({ navigation }) {
     <View style={styles.background}>
       <ScrollView>
         <Background>
-          <HeaderImage
+          <BackButton goBack={navigation.goBack} />
+
+          {/* <HeaderImage
             style={{ marginTop: -10 }}
             uri={
               "https://img.freepik.com/premium-vector/flea-market-scene-cartoon-style_1639-32086.jpg?w=2000"
             }
-          />
+          /> */}
           <Header>UPLOAD YOUR SHOP</Header>
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}

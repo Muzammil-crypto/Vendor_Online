@@ -14,6 +14,7 @@ import CircularIndicator from "../components/CircularIndicator";
 import { Feather } from "@expo/vector-icons";
 import Paragraph from "../components/Paragraph";
 import Header from "../components/Header";
+import BackButton from "../components/BackButton";
 
 export default function LoginScreen({ navigation }) {
   const status = useSelector((state) => state.user);
@@ -59,7 +60,7 @@ export default function LoginScreen({ navigation }) {
   } else
     return (
       <Background>
-        {/* <Button onPress={navigation.goBack} /> */}
+        <BackButton goBack={navigation.goBack} />
         <Logo />
         <TextInput
           label="Email"

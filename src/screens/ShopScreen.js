@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import BackButton from "../components/BackButton";
 import Background from "../components/Background";
 import Header from "../components/Header";
 import Product from "../components/Producst";
@@ -63,6 +64,8 @@ export default function ShopScreen({ navigation }) {
   return (
     <View style={styles.background}>
       <Background>
+        {/* <BackButton goBack={navigation.goBack} /> */}
+
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}

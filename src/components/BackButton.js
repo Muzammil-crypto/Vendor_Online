@@ -1,21 +1,25 @@
-import React from 'react'
-import { TouchableOpacity, Image, StyleSheet } from 'react-native'
-import { getStatusBarHeight } from 'react-native-status-bar-height'
+import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { TouchableOpacity, Image, StyleSheet } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
+import { theme } from "../core/theme";
 
 export default function BackButton({ goBack }) {
   return (
     <TouchableOpacity onPress={goBack} style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require('../assets/arrow_back.png')}
+      <Feather
+        name="arrow-left"
+        size={25}
+        color={theme.colors.primary}
+        style={{ marginRight: 10 }}
       />
     </TouchableOpacity>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    position: "absolute",
     top: 10 + getStatusBarHeight(),
     left: 4,
   },
@@ -23,4 +27,4 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-})
+});

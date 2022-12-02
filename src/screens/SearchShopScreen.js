@@ -8,6 +8,7 @@ import { STATUSES } from "../features/user/userInfoSlice";
 import { Feather } from "@expo/vector-icons";
 import CircularIndicator from "../components/CircularIndicator";
 import { FlatList } from "react-native-gesture-handler";
+import BackButton from "../components/BackButton";
 
 export default function SearchShopScreen({ navigation }) {
   //  const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function SearchShopScreen({ navigation }) {
     return (
       <View style={{ margin: 10 }}>
         <SearchbarComp />
+        <BackButton goBack={navigation.goBack} />
 
         <View style={{ margin: theme.dimensions.windowHeight * 0.02 }}>
           <FlatList

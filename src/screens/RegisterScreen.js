@@ -16,6 +16,7 @@ import { ScrollView, State } from "react-native-gesture-handler";
 import { confirmPasswordValidator } from "../helpers/confirmPasswordValidator";
 import CircularIndicator from "../components/CircularIndicator";
 import Paragraph from "../components/Paragraph";
+import BackButton from "../components/BackButton";
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: "", error: "" });
@@ -61,6 +62,8 @@ export default function RegisterScreen({ navigation }) {
   return (
     <ScrollView>
       <Background>
+        <BackButton goBack={navigation.goBack} />
+
         <Logo />
 
         <TextInput
