@@ -9,6 +9,7 @@ export const theme = {
 
     text: "#818181",
     primary: "#009243",
+    // primary: "#FFA500",
 
     secondary: "#818181",
     error: "#009243",

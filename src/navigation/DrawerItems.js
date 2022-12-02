@@ -4,7 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { theme } from "../core/theme";
 import {
   StartScreen,
@@ -26,8 +26,8 @@ import HeaderLeft from "../components/HeaderLeft";
 import HeaderRight from "../components/HeaderRight";
 import FeatherDrawerIcon from "../components/FeatherDrawerIcon";
 import DrawerImageBackground from "../components/DrawerImageBackground";
-
-export default function AppNavigator() {
+import BottomTabsNavigator from "./BottomTabNavigator";
+export default function DrawerItems() {
   const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator
@@ -44,6 +44,8 @@ export default function AppNavigator() {
         );
       }}
     >
+      {/* <Drawer.Screen name="drawer" component={BottomTabsNavigator} /> */}
+
       <Drawer.Screen
         name="StartScreen"
         component={StartScreen}
@@ -60,21 +62,7 @@ export default function AppNavigator() {
           headerLeft: () => null,
         })}
       />
-      <Drawer.Screen
-        name="Profile"
-        component={Profile}
-        options={({ navigation }) => ({
-          drawerIcon: () => <FeatherDrawerIcon name={"user"} />,
-          title: "Profile",
-          headerStyle: {
-            backgroundColor: theme.colors.primary,
-          },
-          headerTintColor: "white",
-          headerTitleAlign: "center",
-          headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
-        })}
-      />
+
       <Drawer.Screen
         name="LoginScreen"
         component={LoginScreen}
@@ -139,6 +127,21 @@ export default function AppNavigator() {
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
           // headerLeft: () => <HeaderLeft navigation={navigation} />,
+        })}
+      />
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={({ navigation }) => ({
+          drawerIcon: () => <FeatherDrawerIcon name={"user"} />,
+          title: "Profile",
+          headerStyle: {
+            backgroundColor: theme.colors.primary,
+          },
+          headerTintColor: "white",
+          headerTitleAlign: "center",
+          headerRight: () => <HeaderRight navigation={navigation} />,
+          headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
       <Drawer.Screen

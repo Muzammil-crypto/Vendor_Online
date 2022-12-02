@@ -9,8 +9,9 @@ import {
 } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import store from "./src/app/store";
-import AppNavigator from "./src/navigation/AppNavigator";
+import DrawerItems from "./src/navigation/DrawerItems";
 import { theme } from "./src/core/theme";
+import BottomTabsNavigator from "./src/navigation/BottomTabNavigator";
 
 export default function App() {
   const [mode, setMode] = useState(false);
@@ -28,7 +29,7 @@ export default function App() {
         value={mode === true ? theme.darkTheme : theme.colors}
       >
         <NavigationContainer theme={mode === true ? DarkTheme : DefaultTheme}>
-          <AppNavigator />
+          <BottomTabsNavigator />
         </NavigationContainer>
       </themeContext.Provider>
     </Provider>

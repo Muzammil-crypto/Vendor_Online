@@ -78,7 +78,8 @@ export default function CreateShopScreen({ navigation }) {
               }}
             >
               <FlatList
-                numColumns={3}
+                horizontal={true}
+                // numColumns={3}
                 keyExtractor={(item, index) => index.toString()}
                 contentContainerStyle={{
                   marginVertical: 20,

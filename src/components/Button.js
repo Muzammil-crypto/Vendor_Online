@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     borderRadius: 24,
     borderColor: theme.colors.primary,
-    width: "80%",
+    width: "95%",
     marginVertical: 10,
     paddingVertical: 2,
   },
