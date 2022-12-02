@@ -39,7 +39,11 @@ export default function LoginScreen({ navigation }) {
     };
     dispatch(userLogin({ data, navigation }));
     (email.value = ""), (password.value = "");
-    navigation.navigate("HomeScreen");
+    // navigation.navigate("HomeScreen");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "HomeScreen" }],
+    });
   };
   if (status.loading == true) {
     return <CircularIndicator />;
