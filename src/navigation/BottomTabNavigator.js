@@ -31,20 +31,7 @@ import DrawerItems from "./DrawerItems";
 export default function BottomTabsNavigator() {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator
-      backBehavior="history"
-      initialRouteName="StartScreen"
-      drawerContent={(props) => {
-        return (
-          <View style={{ flex: 1 }}>
-            <DrawerContentScrollView {...props}>
-              <DrawerImageBackground />
-              <DrawerItemList {...props} />
-            </DrawerContentScrollView>
-          </View>
-        );
-      }}
-    >
+    <Tab.Navigator backBehavior="history" initialRouteName="StartScreen">
       <Tab.Screen
         name="Drawer"
         component={DrawerItems}
