@@ -37,6 +37,7 @@ export default function BottomTabsNavigator() {
         component={DrawerItems}
         options={{
           headerShown: false,
+
           tabBarItemStyle: { display: "none" },
         }}
       />
@@ -44,11 +45,16 @@ export default function BottomTabsNavigator() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-          drawerIcon: () => <FeatherDrawerIcon name={"home"} />,
+          tabBarIcon: () => <FeatherDrawerIcon name={"home"} />,
           title: "Home",
           headerStyle: {
             backgroundColor: theme.colors.primary,
           },
+          tabBarStyle: { display: "none" },
+
+          //   tabBarStyle: {
+          //     backfaceVisibility: "hidden",
+          //   },
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
@@ -56,18 +62,18 @@ export default function BottomTabsNavigator() {
         })}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="SearchShopScreen"
+        component={SearchShopScreen}
         options={({ navigation }) => ({
-          drawerIcon: () => <FeatherDrawerIcon name={"user"} />,
-          title: "Profile",
+          tabBarIcon: () => <FeatherDrawerIcon name={"search"} />,
+          title: "Search a Shop",
           headerStyle: {
             backgroundColor: theme.colors.primary,
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          headerLeft: () => <HeaderLeft navigation={navigation} />,
+          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
 
@@ -75,7 +81,7 @@ export default function BottomTabsNavigator() {
         name="CreateShopScreen"
         component={CreateShopScreen}
         options={({ navigation }) => ({
-          drawerIcon: () => <FeatherDrawerIcon name={"upload"} />,
+          tabBarIcon: () => <FeatherDrawerIcon name={"upload"} />,
           title: "Upload a Shop",
           headerStyle: {
             backgroundColor: theme.colors.primary,
@@ -86,19 +92,20 @@ export default function BottomTabsNavigator() {
           // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
+
       <Tab.Screen
-        name="SearchShopScreen"
-        component={SearchShopScreen}
+        name="Profile"
+        component={Profile}
         options={({ navigation }) => ({
-          drawerIcon: () => <FeatherDrawerIcon name={"search"} />,
-          title: "Search a Shop",
-          headerStyle: {
+          tabBarIcon: () => <FeatherDrawerIcon name={"user"} />,
+          title: "Profile",
+          tabBarStyle: {
             backgroundColor: theme.colors.primary,
           },
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          // headerLeft: () => <HeaderLeft navigation={navigation} />,
+          headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
     </Tab.Navigator>
