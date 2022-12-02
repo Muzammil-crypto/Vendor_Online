@@ -17,7 +17,6 @@ export default function App() {
   useEffect(() => {
     let eventListner = EventRegister.addEventListener("changeTheme", (data) => {
       setMode(data);
-      console.log(data);
     });
     return () => {
       EventRegister.removeAllListeners(eventListner);

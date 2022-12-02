@@ -32,13 +32,8 @@ export const registerUser = createAsyncThunk(
     try {
       // make request to backend
       const hi = await axios.post(`${url}/api/auth/register`, module.data);
-      console.log(hi.status);
-
-      // if (hi.status === 201) {
-      //   module.navigation.navigate("LoginScreen");
-      // }
     } catch (error) {
-      console.log(error.response.data.message);
+      // console.log(error.response.data.message);
       // return custom error message from API if any
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -56,16 +51,11 @@ export const userLogin = createAsyncThunk(
       // configure header's Content-Type as JSON
 
       const hy = await axios.post(`${url}/api/auth/login`, obj.data);
-      // console.log(hy);
-
-      // if (hy.status === 200) {
-      //   obj.navigation.navigate("HomeScreen");
-      // }
 
       // store user's token in local storage
       await storeData(hy.data.data.token);
       const token = await getData("@storage_Key");
-      console.log("LOGIN DATA", hy.status);
+      // console.log("LOGIN DATA", hy.status);
 
       return hy.status;
     } catch (error) {
@@ -93,7 +83,7 @@ export function fetchUserInfo() {
       dispatch(setUserInfo(data));
       dispatch(setStatus(STATUSES.IDLE));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       dispatch(setStatus(STATUSES.ERROR));
     }
   };
@@ -112,7 +102,7 @@ export function fetchShop() {
 
       dispatch(setShopStatus(STATUSES.IDLE));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       dispatch(setShopStatus(STATUSES.ERROR));
     }
   };
@@ -127,14 +117,14 @@ export function FetchCategoryList() {
       const data = res.data.data;
       // data.data[0]?.title;
       dispatch(setCategory(data));
-      console.log(
-        "THIS IS THE Category DATA",
-        res.data.data,
-        "and the image is "
-      );
+      // console.log(
+      //   "THIS IS THE Category DATA",
+      //   res.data.data,
+      //   "and the image is "
+      // );
       dispatch(setCategoryStatus(STATUSES.IDLE));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       dispatch(setCategoryStatus(STATUSES.ERROR));
     }
   };

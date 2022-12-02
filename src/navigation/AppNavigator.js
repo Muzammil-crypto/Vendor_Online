@@ -49,6 +49,7 @@ export default function AppNavigator() {
         component={StartScreen}
         options={() => ({
           drawerItemStyle: { display: "none" },
+          swipeEnabled: false,
 
           title: "Vendor Online",
           headerStyle: {
@@ -78,6 +79,8 @@ export default function AppNavigator() {
         name="LoginScreen"
         component={LoginScreen}
         options={() => ({
+          swipeEnabled: false,
+
           drawerItemStyle: { display: "none" },
 
           title: "Login",
@@ -95,6 +98,7 @@ export default function AppNavigator() {
         component={RegisterScreen}
         options={({ navigation }) => ({
           drawerItemStyle: { display: "none" },
+          swipeEnabled: false,
 
           title: "SignUp",
           headerStyle: {

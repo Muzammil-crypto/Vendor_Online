@@ -15,43 +15,34 @@ export default function ChoiceCard({
   reviews,
   ...props
 }) {
-  // const dispatch = useDispatch();
-  // const { data, status } = useSelector((state) => state.shop);
   const res = props.data;
 
   return (
-    // console.log("PROP DATA", props.data),
-    console.log("sataassssssss", res),
-    (
-      <View style={styles.view}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: res?.images[0],
-          }}
-        />
+    <View style={styles.view}>
+      <Image
+        style={styles.image}
+        source={{
+          uri: res?.images[0],
+        }}
+      />
 
-        <AirbnbRating
-          showRating={false}
-          starContainerStyle={{ marginTop: 20 }}
-          count={5}
-          // reviews={["Not recommended", "Bad", "Average", "Good", "Very Good"]}
-          defaultRating={res?.reviews.length}
-          size={18}
-        />
+      <AirbnbRating
+        showRating={false}
+        starContainerStyle={{ marginTop: 20 }}
+        count={5}
+        defaultRating={res?.reviews.length}
+        size={18}
+      />
 
-        <Header> {res?.title} </Header>
-        <Text style={styles.text}>Status: {res?.status}</Text>
-        <Text style={styles.text}>Creator: {res?.createdBy?.name}</Text>
-        <Text style={styles.text}>Company: {res?.company}</Text>
-        <Text style={styles.text}>Budget: {res?.budget}</Text>
-        <Text style={styles.text}>
-          ----------------------------------------
-        </Text>
+      <Header> {res?.title} </Header>
+      <Text style={styles.text}>Status: {res?.status}</Text>
+      <Text style={styles.text}>Creator: {res?.createdBy?.name}</Text>
+      <Text style={styles.text}>Company: {res?.company}</Text>
+      <Text style={styles.text}>Budget: {res?.budget}</Text>
+      <Text style={styles.text}>----------------------------------------</Text>
 
-        <Paragraph>{res?.description}</Paragraph>
-      </View>
-    )
+      <Paragraph>{res?.description}</Paragraph>
+    </View>
   );
 }
 

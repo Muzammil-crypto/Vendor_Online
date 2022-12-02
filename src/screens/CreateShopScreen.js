@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import { Feather } from "@expo/vector-icons";
 
-//Components
 import Background from "../components/Background";
 import Button from "../components/Button";
-import Header from "../components/Header";
-import HeaderImage from "../components/HeaderImage";
 import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import GalleryImagecomp from "../components/GalleryImage";
@@ -42,9 +39,8 @@ export default function CreateShopScreen({ navigation }) {
       aspect: [4, 3],
       quality: 1,
       allowsMultipleSelection: true,
-      selectionLimit: 10,
+      selectionLimit: 6,
     });
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets);
