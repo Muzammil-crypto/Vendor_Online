@@ -12,19 +12,20 @@ import {
   RegisterScreen,
   ResetPasswordScreen,
   Dashboard,
+  CreateShopScreen,
+  CheckOutScreen,
+  HomeScreen,
+  OrderDetailScreen,
+  ProductDetails,
+  Profile,
+  SearchShopScreen,
+  ShopScreen,
 } from "../screens";
-import ShopScreen from "../screens/ShopScreen";
-import ProductDetails from "../screens/ProductDetailScreen";
-import SearchShopScreen from "../screens/SearchShopScreen";
-import CheckOutScreen from "../screens/CheckOutScreen";
-import Profile from "../screens/Profile";
-import OrderDetailScreen from "../screens/orderDetailsForm";
-import CreateShopScreen from "../screens/CreateShopScreen";
+
 import HeaderLeft from "../components/HeaderLeft";
 import HeaderRight from "../components/HeaderRight";
 import FeatherDrawerIcon from "../components/FeatherDrawerIcon";
 import DrawerImageBackground from "../components/DrawerImageBackground";
-import HomeScreen from "../screens/HomeScreen";
 
 export default function AppNavigator() {
   const Drawer = createDrawerNavigator();

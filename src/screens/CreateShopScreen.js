@@ -57,23 +57,17 @@ export default function CreateShopScreen({ navigation }) {
         <Background>
           <BackButton goBack={navigation.goBack} />
 
-          {/* <HeaderImage
-            style={{ marginTop: -10 }}
-            uri={
-              "https://img.freepik.com/premium-vector/flea-market-scene-cartoon-style_1639-32086.jpg?w=2000"
-            }
-          /> */}
-          <Header>UPLOAD YOUR SHOP</Header>
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
             <TouchableOpacity onPress={pickImage}>
               <Feather
-                name="plus"
-                size={50}
+                name="camera"
+                size={45}
                 color={theme.colors.secondary}
                 style={{
-                  marginBottom: 10,
+                  padding: 10,
+                  marginTop: 30,
                   borderWidth: 0.75,
                   borderRadius: 8,
                   borderColor: theme.colors.primary,
@@ -107,7 +101,7 @@ export default function CreateShopScreen({ navigation }) {
           <TextInput label="Buget" />
           <TextInput style={{ height: 100 }} label="Description" />
           <DropDownPicker
-            style={{ marginBottom: 100 }}
+            style={{ marginBottom: 150 }}
             open={open}
             value={value}
             items={items}
@@ -128,14 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  checkboxView: {
-    flexDirection: "row",
-    width: theme.dimensions.windowWidth,
-  },
-  checkboxColumnView: {
-    flexDirection: "column",
-    width: theme.dimensions.windowWidth * 1.28,
-  },
+
   container: {
     borderRadius: 18,
     height: "40%",

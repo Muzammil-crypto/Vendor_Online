@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   function sendShopRequest() {
     dispatch(fetchShop());
-    () => navigation.navigate("SearchShopScreen");
+    navigation.navigate("SearchShopScreen");
   }
 
   if (status.loading == true) {
