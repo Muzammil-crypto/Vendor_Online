@@ -1,31 +1,17 @@
 import React from "react";
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-} from "@react-navigation/drawer";
-import { View } from "react-native";
+
+// import { View } from "react-native";
 import { theme } from "../core/theme";
 import {
-  StartScreen,
-  LoginScreen,
-  RegisterScreen,
-  ResetPasswordScreen,
-  Dashboard,
   CreateShopScreen,
-  CheckOutScreen,
   HomeScreen,
-  OrderDetailScreen,
-  ProductDetails,
   Profile,
   SearchShopScreen,
-  ShopScreen,
 } from "../screens";
 
 import HeaderLeft from "../components/HeaderLeft";
 import HeaderRight from "../components/HeaderRight";
 import FeatherDrawerIcon from "../components/FeatherDrawerIcon";
-import DrawerImageBackground from "../components/DrawerImageBackground";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DrawerItems from "./DrawerItems";
 export default function BottomTabsNavigator() {
@@ -50,7 +36,7 @@ export default function BottomTabsNavigator() {
           headerStyle: {
             backgroundColor: theme.colors.primary,
           },
-          tabBarStyle: { display: "none" },
+          // tabBarStyle: { display: "none" },
 
           //   tabBarStyle: {
           //     backfaceVisibility: "hidden",

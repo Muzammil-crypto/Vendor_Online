@@ -44,7 +44,7 @@ export default function DrawerItems() {
         );
       }}
     >
-      {/* <Drawer.Screen name="drawer" component={BottomTabsNavigator} /> */}
+      <Drawer.Screen name="drawer" component={BottomTabsNavigator} />
 
       <Drawer.Screen
         name="StartScreen"
