@@ -3,8 +3,7 @@ import { StyleSheet, Image, Text, View } from "react-native";
 import { theme } from "../core/theme";
 import Header from "./Header";
 import { Rating, AirbnbRating } from "react-native-ratings";
-import { fetchShop } from "../features/user/userActions";
-import { useDispatch, useSelector } from "react-redux";
+
 import Paragraph from "./Paragraph";
 export default function ChoiceCard({
   mode,
