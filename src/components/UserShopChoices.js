@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 import { theme } from "../core/theme";
 import Header from "./Header";
-import { Rating, AirbnbRating } from "react-native-ratings";
+import { AirbnbRating } from "react-native-ratings";
 
 import Paragraph from "./Paragraph";
 export default function ChoiceCard({
