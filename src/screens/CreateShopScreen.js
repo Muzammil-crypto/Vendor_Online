@@ -2,29 +2,19 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
-import DropDownPicker from "react-native-dropdown-picker";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import { Feather } from "@expo/vector-icons";
-import Yup from "yup";
-
 import Background from "../components/Background";
+import { useSelector } from "react-redux";
 import Button from "../components/Button";
-// import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import GalleryImagecomp from "../components/GalleryImage";
 import BackButton from "../components/BackButton";
 import InputText from "../Formik/components/InputText";
 import ErrorMsg from "../Formik/components/ErrorMsg";
 import UploadFormValidationScheme from "../Formik/schemas/UploadFormvalidationSchema";
-
+import { Picker } from "@react-native-picker/picker";
 export default function CreateShopScreen({ navigation }) {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-  ]);
-  /////////////////////////////////////////////////
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
 
   const [images, setImage] = useState([]);
@@ -36,7 +26,6 @@ export default function CreateShopScreen({ navigation }) {
     })();
   }, []);
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       // allowsEditing: true,
@@ -50,14 +39,16 @@ export default function CreateShopScreen({ navigation }) {
       setImage(result.assets);
     }
   };
-  // const { data, status } = useSelector((state) => state.category);
-
+  const { data, status } = useSelector((state) => state.category);
+  const res = data[0].subcategories;
   const onSubmit = () => {
-    console.log("object");
-
     navigation.navigate("RegisterScreen");
   };
 
+  const formik = useFormik({
+    initialValues: { categoryName: "" },
+    onSubmit: (values) => console.log(values),
+  });
   return (
     <View style={styles.background}>
       <ScrollView>
@@ -169,6 +160,29 @@ export default function CreateShopScreen({ navigation }) {
                   {errors.description && (
                     <ErrorMsg value={errors.description} />
                   )}
+                  <Picker
+                    enabled={true}
+                    mode="dropdown"
+                    placeholder="Select City"
+                    style={{
+                      color: theme.colors.primary,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      width: "80%",
+                    }}
+                    onValueChange={formik.handleChange("categoryName")}
+                    selectedValue={formik.values.categoryName}
+                  >
+                    {res.map((item) => {
+                      return (
+                        <Picker.Item
+                          label={item.name.toString()}
+                          value={item.name.toString()}
+                          key={item._id.toString()}
+                        />
+                      );
+                    })}
+                  </Picker>
 
                   <Button onPress={handleSubmit} mode={"contained"}>
                     Submit

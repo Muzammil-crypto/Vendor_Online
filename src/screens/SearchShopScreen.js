@@ -13,8 +13,7 @@ import BackButton from "../components/BackButton";
 export default function SearchShopScreen({ navigation }) {
   //  const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.shop);
-  // const responseArray = data[0];
-  // console.log("Response is ", responseArray);
+
   if (status == STATUSES.LOADING) {
     return <CircularIndicator />;
   } else if (status == STATUSES.ERROR) {
