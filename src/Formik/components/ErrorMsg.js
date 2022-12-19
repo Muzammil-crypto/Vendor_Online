@@ -1,5 +1,8 @@
 import React from "react";
 import { Text } from "react-native";
+import { theme } from "../../core/theme";
 export default function ErrorMsg({ value }) {
-  return <Text style={{ fontSize: 10, color: "#2FBAE3" }}>{value}</Text>;
+  return (
+    <Text style={{ fontSize: 10, color: theme.colors.error }}>{value}</Text>
+  );
 }

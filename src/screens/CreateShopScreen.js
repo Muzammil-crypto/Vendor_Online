@@ -74,7 +74,7 @@ export default function CreateShopScreen({ navigation }) {
                 color={theme.colors.secondary}
                 style={{
                   padding: 10,
-                  marginTop: 30,
+                  marginTop: theme.dimensions.windowHeight / 8,
                   borderWidth: 0.75,
                   borderRadius: 8,
                   borderColor: theme.colors.primary,
@@ -93,8 +93,8 @@ export default function CreateShopScreen({ navigation }) {
                 // numColumns={3}
                 keyExtractor={(item, index) => index.toString()}
                 contentContainerStyle={{
-                  marginVertical: 20,
-                  paddingBottom: 50,
+                  marginTop: 20,
+                  paddingBottom: 20,
                   alignItems: "center",
                   width: theme.dimensions.windowWidth,
                 }}
@@ -106,7 +106,12 @@ export default function CreateShopScreen({ navigation }) {
           <View style={styles.loginContainer}>
             <Formik
               validationSchema={UploadFormValidationScheme}
-              initialValues={{ budget: "", company: "", shopTitle: "" }}
+              initialValues={{
+                budget: "",
+                company: "",
+                shopTitle: "",
+                description: "",
+              }}
               onSubmit={onSubmit}
             >
               {({
@@ -122,10 +127,10 @@ export default function CreateShopScreen({ navigation }) {
                     name="shopTitle"
                     placeholder="Shop Title"
                     style={styles.textInputs}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
+                    onChangeText={handleChange("shopTitle")}
+                    onBlur={handleBlur("shopTitle")}
                     value={values.shopTitle}
-                    keyboardType="email-address"
+                    keyboardType="default"
                   />
 
                   {errors.shopTitle && <ErrorMsg value={errors.shopTitle} />}
@@ -136,7 +141,7 @@ export default function CreateShopScreen({ navigation }) {
                     onChangeText={handleChange("company")}
                     onBlur={handleBlur("company")}
                     value={values.company}
-                    keyboardType="email-address"
+                    keyboardType="default"
                   />
 
                   {errors.company && <ErrorMsg value={errors.company} />}
@@ -144,31 +149,27 @@ export default function CreateShopScreen({ navigation }) {
                     name="budget"
                     placeholder="Budget"
                     style={styles.textInputs}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
+                    onChangeText={handleChange("budget")}
+                    onBlur={handleBlur("budget")}
                     value={values.budget}
                     keyboardType="numeric"
                   />
-
                   {errors.budget && <ErrorMsg value={errors.budget} />}
-                  {/* <InputText
-                    name="password"
-                    placeholder="Password"
+
+                  <InputText
+                    name="description"
+                    placeholder="Description"
                     style={styles.textInputs}
-                    onChangeText={handleChange("password")}
-                    onBlur={handleBlur("password")}
-                    value={values.password}
-                    secureTextEntry
+                    onChangeText={handleChange("description")}
+                    onBlur={handleBlur("description")}
+                    value={values.description}
+                    keyboardType="default"
                   />
-                  {errors.password && <ErrorMsg value={errors.password} />} */}
-                  {/* <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity>
-                      <ClickAbleText linkText="Forgot Password?" />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <ClickAbleText linkText="Don't have an account?" />
-                    </TouchableOpacity>
-                  </View> */}
+
+                  {errors.description && (
+                    <ErrorMsg value={errors.description} />
+                  )}
+
                   <Button onPress={handleSubmit} mode={"contained"}>
                     Submit
                   </Button>
@@ -176,18 +177,6 @@ export default function CreateShopScreen({ navigation }) {
               )}
             </Formik>
           </View>
-          {/* 
-          <DropDownPicker
-            style={{ marginBottom: 150 }}
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-          />
-
-          <Button mode={"contained"}>Post Shop</Button> */}
         </Background>
       </ScrollView>
     </View>
@@ -214,7 +203,7 @@ const styles = StyleSheet.create({
     width: "80%",
     margin: 5,
     backgroundColor: "white",
-    borderColor: "#2FBAE3",
+    borderColor: theme.colors.primary,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
   },
