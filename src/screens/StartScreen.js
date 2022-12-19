@@ -19,14 +19,16 @@ export default function StartScreen({ navigation }) {
 
   const newTheme = useContext(themeContext);
   const dispatch = useDispatch();
-  function sendUserInfoRequeste() {
-    dispatch(FetchCategoryList());
-    dispatch(fetchUserInfo());
-    navigation.navigate("Profile");
-    dispatch(fetchShop());
-  }
+  // function sendUserInfoRequeste() {
+  //   dispatch(FetchCategoryList());
+  //   dispatch(fetchUserInfo());
+  //   navigation.navigate("Profile");
+  //   dispatch(fetchShop());
+  // }
   // useEffect(() => {});
   function goToLoginPage() {
+    dispatch(FetchCategoryList());
+
     navigation.navigate("LoginScreen");
   }
   return (

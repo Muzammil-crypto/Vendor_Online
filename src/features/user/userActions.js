@@ -117,11 +117,11 @@ export function FetchCategoryList() {
       const data = res.data.data;
       // data.data[0]?.title;
       dispatch(setCategory(data));
-      // console.log(
-      //   "THIS IS THE Category DATA",
-      //   res.data.data,
-      //   "and the image is "
-      // );
+      console.log(
+        "THIS IS THE Category DATA",
+        res.data.data,
+        "and the image is "
+      );
       dispatch(setCategoryStatus(STATUSES.IDLE));
     } catch (err) {
       // console.log(err);

@@ -3,15 +3,19 @@ import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
-
+import { Formik } from "formik";
 import { Feather } from "@expo/vector-icons";
+import Yup from "yup";
 
 import Background from "../components/Background";
 import Button from "../components/Button";
-import TextInput from "../components/TextInput";
+// import TextInput from "../components/TextInput";
 import { theme } from "../core/theme";
 import GalleryImagecomp from "../components/GalleryImage";
 import BackButton from "../components/BackButton";
+import InputText from "../Formik/components/InputText";
+import ErrorMsg from "../Formik/components/ErrorMsg";
+import UploadFormValidationScheme from "../Formik/schemas/UploadFormvalidationSchema";
 
 export default function CreateShopScreen({ navigation }) {
   const [open, setOpen] = useState(false);
@@ -45,6 +49,13 @@ export default function CreateShopScreen({ navigation }) {
     if (!result.canceled) {
       setImage(result.assets);
     }
+  };
+  // const { data, status } = useSelector((state) => state.category);
+
+  const onSubmit = () => {
+    console.log("object");
+
+    navigation.navigate("RegisterScreen");
   };
 
   return (
@@ -92,11 +103,80 @@ export default function CreateShopScreen({ navigation }) {
               />
             </View>
           </View>
-          <TextInput label="Shop Title" />
-          <TextInput label="Company" />
-          <TextInput label="Location" />
-          <TextInput label="Buget" />
-          <TextInput style={{ height: 100 }} label="Description" />
+          <View style={styles.loginContainer}>
+            <Formik
+              validationSchema={UploadFormValidationScheme}
+              initialValues={{ budget: "", company: "", shopTitle: "" }}
+              onSubmit={onSubmit}
+            >
+              {({
+                handleChange,
+                handleBlur,
+                values,
+                errors,
+
+                handleSubmit,
+              }) => (
+                <>
+                  <InputText
+                    name="shopTitle"
+                    placeholder="Shop Title"
+                    style={styles.textInputs}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    value={values.shopTitle}
+                    keyboardType="email-address"
+                  />
+
+                  {errors.shopTitle && <ErrorMsg value={errors.shopTitle} />}
+                  <InputText
+                    name="company"
+                    placeholder="Company"
+                    style={styles.textInputs}
+                    onChangeText={handleChange("company")}
+                    onBlur={handleBlur("company")}
+                    value={values.company}
+                    keyboardType="email-address"
+                  />
+
+                  {errors.company && <ErrorMsg value={errors.company} />}
+                  <InputText
+                    name="budget"
+                    placeholder="Budget"
+                    style={styles.textInputs}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    value={values.budget}
+                    keyboardType="numeric"
+                  />
+
+                  {errors.budget && <ErrorMsg value={errors.budget} />}
+                  {/* <InputText
+                    name="password"
+                    placeholder="Password"
+                    style={styles.textInputs}
+                    onChangeText={handleChange("password")}
+                    onBlur={handleBlur("password")}
+                    value={values.password}
+                    secureTextEntry
+                  />
+                  {errors.password && <ErrorMsg value={errors.password} />} */}
+                  {/* <View style={{ flexDirection: "row" }}>
+                    <TouchableOpacity>
+                      <ClickAbleText linkText="Forgot Password?" />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                      <ClickAbleText linkText="Don't have an account?" />
+                    </TouchableOpacity>
+                  </View> */}
+                  <Button onPress={handleSubmit} mode={"contained"}>
+                    Submit
+                  </Button>
+                </>
+              )}
+            </Formik>
+          </View>
+          {/* 
           <DropDownPicker
             style={{ marginBottom: 150 }}
             open={open}
@@ -107,7 +187,7 @@ export default function CreateShopScreen({ navigation }) {
             setItems={setItems}
           />
 
-          <Button mode={"contained"}>Post Shop</Button>
+          <Button mode={"contained"}>Post Shop</Button> */}
         </Background>
       </ScrollView>
     </View>
@@ -118,6 +198,25 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: "100%",
+  },
+  loginContainer: {
+    borderRadius: 18,
+    // backgroundColor: theme.colors.error,
+    width: "95%",
+    height: "55%",
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  textInputs: {
+    paddingLeft: "2%",
+    height: 40,
+    width: "80%",
+    margin: 5,
+    backgroundColor: "white",
+    borderColor: "#2FBAE3",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 8,
   },
 
   container: {
