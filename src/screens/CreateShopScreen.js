@@ -14,6 +14,8 @@ import InputText from "../Formik/components/InputText";
 import ErrorMsg from "../Formik/components/ErrorMsg";
 import UploadFormValidationScheme from "../Formik/schemas/UploadFormvalidationSchema";
 import { Picker } from "@react-native-picker/picker";
+import { useDispatch } from "react-redux";
+import { postShop } from "../features/user/userActions";
 export default function CreateShopScreen({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
 
@@ -39,10 +41,26 @@ export default function CreateShopScreen({ navigation }) {
       setImage(result.assets);
     }
   };
+  const cat = "63595cd8d8ae4fe634abb1e0";
   const { data, status } = useSelector((state) => state.category);
-  const res = data[0].subcategories;
+  const res = data[0]?.subcategories;
+  const dispatch = useDispatch();
+  const details = {
+    title: "sssssss",
+    description:
+      "aoskaokskaoskakaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaoksk",
+    category: cat,
+    company: "ssssscccccc",
+    budget: 200,
+    type: "shop",
+    location: {
+      lat: 31.467979194011804,
+      lng: 74.26523240244676,
+      address: "loading...",
+    },
+  };
   const onSubmit = () => {
-    navigation.navigate("RegisterScreen");
+    dispatch(postShop({ details, navigation }));
   };
 
   const formik = useFormik({

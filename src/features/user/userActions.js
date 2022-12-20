@@ -1,10 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { url } from "../../const";
 import { STATUSES, setStatus, setUserInfo } from "./userInfoSlice";
 import { setShop, setShopStatus } from "./shopSlice";
 import { setCategory, setCategoryStatus } from "./categorySlice";
+import { url } from "../../../constants/const";
 export const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -125,3 +125,24 @@ export function FetchCategoryList() {
     }
   };
 }
+
+export const postShop = createAsyncThunk(
+  // action type string
+  "postShop/shops",
+  // callback function
+
+  async (module, { rejectWithValue }) => {
+    try {
+      // make request to backend
+      const request = await axios.post(`${url}/api/jobs/`, module.data);
+      console.log(request);
+    } catch (error) {
+      console.log(error.response.data.message);
+      // return custom error message from API if any
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);
