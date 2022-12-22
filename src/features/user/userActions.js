@@ -129,12 +129,11 @@ export function FetchCategoryList() {
 export const postShop = createAsyncThunk(
   // action type string
   "postShop/shops",
-  // callback function
-
+  // callback function--->
   async (module, { rejectWithValue }) => {
     try {
       const token = await getData();
-      console.log("Data", module);
+      // console.log("Data", module);
       const request = await axios.post(`${url}/api/jobs/`, module.data, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
