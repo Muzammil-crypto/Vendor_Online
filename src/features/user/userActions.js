@@ -133,8 +133,12 @@ export const postShop = createAsyncThunk(
 
   async (module, { rejectWithValue }) => {
     try {
-      // make request to backend
-      const request = await axios.post(`${url}/api/jobs/`, module.data);
+      const token = await getData();
+      console.log("Data", module);
+      const request = await axios.post(`${url}/api/jobs/`, module.data, {
+        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log(request);
     } catch (error) {
       console.log(error.response.data.message);

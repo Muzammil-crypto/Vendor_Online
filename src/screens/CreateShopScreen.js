@@ -49,9 +49,9 @@ export default function CreateShopScreen({ navigation }) {
     title: "sssssss",
     description:
       "aoskaokskaoskakaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaoksk",
-    category: cat,
+    category: "63595cd8d8ae4fe634abb1e0",
     company: "ssssscccccc",
-    budget: 200,
+    budget: "200",
     type: "shop",
     location: {
       lat: 31.467979194011804,
@@ -60,7 +60,7 @@ export default function CreateShopScreen({ navigation }) {
     },
   };
   const onSubmit = () => {
-    dispatch(postShop({ details, navigation }));
+    dispatch(postShop({ data: details, navigation }));
   };
 
   const formik = useFormik({
