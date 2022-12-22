@@ -45,28 +45,24 @@ export default function CreateShopScreen({ navigation }) {
   const { data, status } = useSelector((state) => state.category);
   const res = data[0]?.subcategories;
   const dispatch = useDispatch();
-  const details = {
-    title: "sssssss",
-    description:
-      "aoskaokskaoskakaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaoksk",
-    category: "63595cd8d8ae4fe634abb1e0",
-    company: "ssssscccccc",
-    budget: "200",
-    type: "shop",
-    location: {
-      lat: 31.467979194011804,
-      lng: 74.26523240244676,
-      address: "loading...",
-    },
-  };
-  const onSubmit = () => {
-    dispatch(postShop({ data: details, navigation }));
-  };
+  // const details = {
+  //   title: "sssssss",
+  //   description:
+  //     "aoskaokskaoskakaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaoksk",
+  //   category: "63595cd8d8ae4fe634abb1e0",
+  //   company: "ssssscccccc",
+  //   budget: "200",
+  //   type: "shop",
+  //   location: {
+  //     lat: 31.467979194011804,
+  //     lng: 74.26523240244676,
+  //     address: "loading...",
+  //   },
+  // };
+  // const onSubmit = () => {
+  //   dispatch(postShop({ data: details, navigation }));
+  // };
 
-  const formik = useFormik({
-    initialValues: { categoryName: "" },
-    onSubmit: (values) => console.log(values),
-  });
   return (
     <View style={styles.background}>
       <ScrollView>
@@ -120,8 +116,26 @@ export default function CreateShopScreen({ navigation }) {
                 company: "",
                 shopTitle: "",
                 description: "",
+                category: "",
               }}
-              onSubmit={onSubmit}
+              onSubmit={(values) => {
+                const details = {
+                  title: values.shopTitle,
+                  description: values.description,
+                  category: values.category,
+                  company: values.company,
+                  budget: values.budget,
+                  type: "shop",
+                  location: {
+                    lat: 31.467979194011804,
+                    lng: 74.26523240244676,
+                    address: "loading...",
+                  },
+                };
+                dispatch(postShop({ data: details, navigation }));
+
+                // alert(JSON.stringify(values));
+              }}
             >
               {({
                 handleChange,
@@ -180,7 +194,7 @@ export default function CreateShopScreen({ navigation }) {
                   )}
                   <Picker
                     enabled={true}
-                    mode="dropdown"
+                    mode="category"
                     placeholder="Select City"
                     style={{
                       color: theme.colors.primary,
@@ -188,8 +202,8 @@ export default function CreateShopScreen({ navigation }) {
                       borderWidth: 1,
                       width: "80%",
                     }}
-                    onValueChange={formik.handleChange("categoryName")}
-                    selectedValue={formik.values.categoryName}
+                    onValueChange={handleChange("category")}
+                    selectedValue={values.category}
                   >
                     {res.map((item) => {
                       return (
