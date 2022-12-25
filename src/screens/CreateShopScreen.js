@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { postShop } from "../features/user/userActions";
 export default function CreateShopScreen({ navigation }) {
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
+  const [category, setCategory] = useState("");
 
   const [images, setImage] = useState([]);
   useEffect(() => {
@@ -30,38 +31,21 @@ export default function CreateShopScreen({ navigation }) {
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
       allowsMultipleSelection: true,
       selectionLimit: 6,
     });
+    console.log("images", result.assets);
+    const allIMages = result.assets;
 
     if (!result.canceled) {
       setImage(result.assets);
     }
   };
-  const cat = "63595cd8d8ae4fe634abb1e0";
   const { data, status } = useSelector((state) => state.category);
   const res = data[0]?.subcategories;
   const dispatch = useDispatch();
-  // const details = {
-  //   title: "sssssss",
-  //   description:
-  //     "aoskaokskaoskakaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaokskaoskaoksk",
-  //   category: "63595cd8d8ae4fe634abb1e0",
-  //   company: "ssssscccccc",
-  //   budget: "200",
-  //   type: "shop",
-  //   location: {
-  //     lat: 31.467979194011804,
-  //     lng: 74.26523240244676,
-  //     address: "loading...",
-  //   },
-  // };
-  // const onSubmit = () => {
-  //   dispatch(postShop({ data: details, navigation }));
-  // };
 
   return (
     <View style={styles.background}>
@@ -119,22 +103,46 @@ export default function CreateShopScreen({ navigation }) {
                 category: "",
               }}
               onSubmit={(values) => {
-                const details = {
-                  title: values.shopTitle,
-                  description: values.description,
-                  category: values.category,
-                  company: values.company,
-                  budget: values.budget,
-                  type: "shop",
-                  location: {
-                    lat: 31.467979194011804,
-                    lng: 74.26523240244676,
-                    address: "loading...",
-                  },
-                };
-                dispatch(postShop({ data: details, navigation }));
+                const formData = new FormData();
+                formData.append("type", "job");
 
-                // alert(JSON.stringify(values));
+                formData.append("title", values.shopTitle);
+                if (values.company) {
+                  formData.append("company", values.company);
+                }
+                formData.append("location", {
+                  lat: 31.467979194011804,
+                  lng: 74.26523240244676,
+                  address: "loading...",
+                });
+                formData.append("budget", values.budget);
+                formData.append("description", values.description);
+                formData.append("category", values.category);
+
+                if (images.length > 0) {
+                  images.forEach((image) => {
+                    formData.append("images", image);
+                    console.log("OUR UPLOADING IMAGE", image);
+                  });
+                }
+
+                // createJob(formData);
+
+                // const details = {
+                //   title: values.shopTitle,
+                //   description: values.description,
+                //   category: category.toString(),
+                //   company: values.company,
+                //   budget: values.budget,
+                //   type: "shop",
+                //   location: {
+                //     lat: 31.467979194011804,
+                //     lng: 74.26523240244676,
+                //     address: "loading...",
+                //   },
+                // };
+                dispatch(postShop({ data: formData, navigation }));
+                alert(JSON.stringify(formData));
               }}
             >
               {({
@@ -192,6 +200,7 @@ export default function CreateShopScreen({ navigation }) {
                   {errors.description && (
                     <ErrorMsg value={errors.description} />
                   )}
+
                   <Picker
                     enabled={true}
                     mode="category"
@@ -203,13 +212,13 @@ export default function CreateShopScreen({ navigation }) {
                       width: "80%",
                     }}
                     onValueChange={handleChange("category")}
-                    selectedValue={values.category}
+                    selectedValue={setCategory(values.category)}
                   >
                     {res.map((item) => {
                       return (
                         <Picker.Item
                           label={item.name.toString()}
-                          value={item.name.toString()}
+                          value={item._id}
                           key={item._id.toString()}
                         />
                       );
@@ -236,7 +245,6 @@ const styles = StyleSheet.create({
   },
   loginContainer: {
     borderRadius: 18,
-    // backgroundColor: theme.colors.error,
     width: "95%",
     height: "55%",
     alignItems: "center",

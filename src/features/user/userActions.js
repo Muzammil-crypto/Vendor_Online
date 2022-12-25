@@ -95,7 +95,7 @@ export function fetchShop() {
     dispatch(setShopStatus(STATUSES.LOADING));
     try {
       // const token = await getData();
-      const res = await axios.get(`${url}/api/jobs/`);
+      const res = await axios.get(`${url}/api/jobs/type/job`);
       const data = res.data.data;
       // data.data[0]?.title;
       dispatch(setShop(data));
