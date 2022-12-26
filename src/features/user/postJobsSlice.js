@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { postShop } from "./user/userActions";
+import { postShop } from "./userActions";
 const initialState = {
   user: null,
   loading: false,

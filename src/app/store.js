@@ -4,7 +4,7 @@ import userInfoReducer from "../features/user/userInfoSlice";
 import shopReducer from "../features/user/shopSlice";
 import categoryReducer from "../features/user/categorySlice";
 import userLoginReducer from "../features/user/userLoginSlice";
-import postShopReducer from "../features/postJobsSlice";
+import postShopReducer from "../features/user/postJobsSlice";
 const store = configureStore({
   reducer: {
     user: userReducer,
