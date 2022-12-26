@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import BackButton from "../components/BackButton";
 import Background from "../components/Background";
 import Header from "../components/Header";
 import Product from "../components/Producst";
 import { theme } from "../core/theme";
+import { useDispatch, useSelector } from "react-redux";
 
 const Products = [
   {
@@ -58,9 +58,13 @@ const Products = [
       "https://img.freepik.com/free-vector/grape-fruit-cartoon-illustration-flat-cartoon-style_138676-2877.jpg",
   },
 ];
+
 export default function ShopScreen({ navigation }) {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+
+  const { data, status } = useSelector((state) => state.postProduct);
+
   return (
     <View style={styles.background}>
       <Background>

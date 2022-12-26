@@ -5,6 +5,7 @@ import { STATUSES, setStatus, setUserInfo } from "./userInfoSlice";
 import { setShop, setShopStatus } from "./shopSlice";
 import { setCategory, setCategoryStatus } from "./categorySlice";
 import { url } from "../../../constants/const";
+import { setProduct, setProductStatus } from "./getAllProductSlice";
 export const storeData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -149,6 +150,7 @@ export const postShop = createAsyncThunk(
     }
   }
 );
+//Post Product Action
 
 export const postProduct = createAsyncThunk(
   // action type string
@@ -159,9 +161,13 @@ export const postProduct = createAsyncThunk(
       const token = await getData();
       // console.log("Data", module);
       const request = await axios.post(
-        `${url}/api/products/shopId=${shopId}`,
+        `${url}/api/products/ABC?shopId=ABC`,
         module.data
       );
+      // const request = await axios.post(
+      //   `${url}/api/products/shopId=${shopId}`,
+      //   module.data
+      // );
       console.log(request);
     } catch (error) {
       console.log(error.response.data.message);
@@ -173,3 +179,21 @@ export const postProduct = createAsyncThunk(
     }
   }
 );
+//Get All Products
+export function GetAllProductList() {
+  return async function FetchCategoryThunk(dispatch, getState) {
+    dispatch(setProductStatus(STATUSES.LOADING));
+    try {
+      // const token = await getData();
+      const res = await axios.get(`${url}/api/products/ABC?shopId=ABC`);
+      const data = res.data.data;
+      // data.data[0]?.title;
+      dispatch(setProduct(data));
+      console.log("THIS IS THE Product DATA", data);
+      dispatch(setProductStatus(STATUSES.IDLE));
+    } catch (err) {
+      // console.log(err);
+      dispatch(setCategoryStatus(STATUSES.ERROR));
+    }
+  };
+}

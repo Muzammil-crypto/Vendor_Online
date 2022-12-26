@@ -11,6 +11,8 @@ import {
   FetchCategoryList,
   fetchShop,
   fetchUserInfo,
+  GetAllProductList,
+  postProduct,
 } from "../features/user/userActions";
 import { useDispatch } from "react-redux";
 import themeContext from "../core/themeContext";
@@ -28,6 +30,7 @@ export default function StartScreen({ navigation }) {
   // useEffect(() => {});
   function goToLoginPage() {
     dispatch(FetchCategoryList());
+    dispatch(GetAllProductList());
 
     navigation.navigate("LoginScreen");
   }
