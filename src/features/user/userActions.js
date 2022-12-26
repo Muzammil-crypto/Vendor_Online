@@ -125,7 +125,7 @@ export function FetchCategoryList() {
     }
   };
 }
-
+//Post Shop Action
 export const postShop = createAsyncThunk(
   // action type string
   "postShop/shops",
@@ -138,6 +138,30 @@ export const postShop = createAsyncThunk(
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(request);
+    } catch (error) {
+      console.log(error.response.data.message);
+      // return custom error message from API if any
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const postProduct = createAsyncThunk(
+  // action type string
+  "postProduct/product",
+  // callback function--->
+  async (module, { rejectWithValue }) => {
+    try {
+      const token = await getData();
+      // console.log("Data", module);
+      const request = await axios.post(
+        `${url}/api/products/shopId=${shopId}`,
+        module.data
+      );
       console.log(request);
     } catch (error) {
       console.log(error.response.data.message);

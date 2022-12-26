@@ -51,11 +51,11 @@ export default function CreateShopScreen({ navigation }) {
     <View style={styles.background}>
       <ScrollView>
         <Background>
-          <BackButton goBack={navigation.goBack} />
-
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
+            <BackButton goBack={navigation.goBack} />
+
             <TouchableOpacity onPress={pickImage}>
               <Feather
                 name="camera"

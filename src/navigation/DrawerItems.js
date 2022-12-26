@@ -126,7 +126,6 @@ export default function DrawerItems() {
           headerTintColor: "white",
           headerTitleAlign: "center",
           headerRight: () => <HeaderRight navigation={navigation} />,
-          // headerLeft: () => <HeaderLeft navigation={navigation} />,
         })}
       />
       <Drawer.Screen
